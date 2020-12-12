@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Product Management</title>
 <link rel="icon" type="image/x-icon"
-	href="<c:url value="/resource/images/favicon1.png"/>" />
+	href="<c:url value="../resource/images/favicon1.png"/>" />
 <link rel="stylesheet"
 	href="<c:url value="../resource/bootstrap/css/bootstrap.min.css"/>">
 <script src="<c:url value="../resource/js/jquery.js"/>"></script>

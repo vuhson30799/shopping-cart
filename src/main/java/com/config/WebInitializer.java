@@ -33,5 +33,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
                 .addServlet("h2-console", new WebServlet());
         servlet.setLoadOnStartup(2);
         servlet.addMapping("/console/*");
+        servlet.setInitParameter("webAllowOthers", "true");
     }
 }

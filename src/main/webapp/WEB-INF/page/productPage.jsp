@@ -12,10 +12,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Products</title>
 <link rel="icon" type="image/x-icon"
-	href="<c:url value="/resource/images/favicon1.png"/>" />
+	href="<c:url value="../resource/images/favicon1.png"/>" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="<c:url value="/resource/js/productController.js"/>"></script>
+<script src="<c:url value="../resource/js/productController.js"/>"></script>
 </head>
 <body>
 	<div ng-app="myapp">

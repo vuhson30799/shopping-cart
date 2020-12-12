@@ -10,6 +10,6 @@
 </head>
 <body>
 	${hello}
-	<c:url value="../../resource/bootstrap/css/bootstrap.min.css" />
+	<c:url value="../../WEB-INF/resource/bootstrap/css/bootstrap.min.css" />
 </body>
 </html>

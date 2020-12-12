@@ -11,13 +11,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register Here</title>
 <link rel="icon" type="image/x-icon"
-	href="<c:url value="/resource/images/favicon1.png"/>" />
+	href="<c:url value="../resource/images/favicon1.png"/>" />
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+	href="<c:url value="../resource/bootstrap/css/bootstrap.min.css"/>">
+<script src="<c:url value="../resource/js/jquery.js"/>"></script>
+<script src="<c:url value="../resource/bootstrap/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/register.css"/>">
+	href="<c:url value="../resource/css/register.css"/>">
 
 </head>
 <body>
@@ -28,8 +28,8 @@
 			<div class="row">
 
 				<!--  RegisterServlet  form -->
-				<c:url value="/customer/registration" var="url"></c:url>
-				<form:form method="post" action="${url}" commandName="customer"
+				<c:url value="/customer/registration" var="url"/>
+				<form:form method="post" action="${url}" modelAttribute="customer"
 					enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">

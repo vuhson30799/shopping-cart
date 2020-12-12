@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>AboutUs</title>
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+	href="<c:url value="/WEB-INF/resource/bootstrap/css/bootstrap.min.css"/>">
+<script src="<c:url value="/WEB-INF/resource/js/jquery.js"/>"></script>
+<script src="<c:url value="/WEB-INF/resource/bootstrap/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/aboutus.css"/>">
-<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
+	href="<c:url value="/WEB-INF/resource/css/aboutus.css"/>">
+<link rel="icon" type="image/x-icon" href="<c:url value="/WEB-INF/resource/images/favicon1.png"/>" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 		<div class="col-sm-4" style="margin-top:0px">
 			<div class="container-fluid bg-1 text-center">
 				<h3>Who Am I?</h3>
-				<img src="<c:url value="/resource/images/aboutImage.png"/>" class="img-circle" alt="AboutUs" width="350"
+				<img src="<c:url value="../resource/images/aboutImage.png"/>" class="img-circle" alt="AboutUs" width="350"
 					height="350">
 				<h3>ShopIeasy a WorldWide E-Commerce Site</h3>
 			</div>

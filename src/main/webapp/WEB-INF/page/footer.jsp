@@ -11,11 +11,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+	href="<c:url value="/WEB-INF/resource/bootstrap/css/bootstrap.min.css"/>">
+<script src="<c:url value="/WEB-INF/resource/js/jquery.js"/>"></script>
+<script src="<c:url value="/WEB-INF/resource/bootstrap/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/overall.css"/>">
+	href="<c:url value="/WEB-INF/resource/css/overall.css"/>">
 </head>
 <body>
 	<footer class="footer-distributed">
@@ -37,7 +37,7 @@
 				List</a> · <a href="<c:url value="/contactus"/>">Contact Us</a>
 		</p>
 
-		<p>Created by Mohammed Ismail.A ShopIeasy &copy; 2017</p>
+		<p>Created by STYLH teams &copy; 2020</p>
 	</div>
 	</footer>
 </body>
