@@ -1,47 +1,40 @@
 package com.dao;
 
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.model.Cart;
+import com.model.CartItem;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.model.Cart;
-import com.model.CartItem;
+import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class CartItemDaoImpl implements CartItemDao {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	private EntityManager entityManager;
 
 	public void addCartItem(CartItem cartItem) {
-		Session session = sessionFactory.openSession();
-		session.saveOrUpdate(cartItem);
-		session.flush();
-		session.close();
+		CartItem cartItemFromDb = entityManager.find(CartItem.class, cartItem.getCartItemId());
+		if (cartItemFromDb == null) {
+			entityManager.persist(cartItem);
+		}else {
+			entityManager.refresh(cartItem);
+		}
+		entityManager.flush();
+		entityManager.close();
 	}
 
-	public void removeCartItem(String CartItemId) {
-		Session session = sessionFactory.openSession();
-		CartItem cartItem = (CartItem) session.get(CartItem.class, CartItemId);
-		session.delete(cartItem);
+	public void removeCartItem(String cartItemId) {
+		CartItem cartItem = entityManager.find(CartItem.class, cartItemId);
+		entityManager.remove(cartItem);
 		Cart cart = cartItem.getCart();
 		List<CartItem> cartItems = cart.getCartItem();
 		cartItems.remove(cartItem);
-		session.flush();
-		session.close();
+		entityManager.flush();
+		entityManager.close();
 	}
 
 	public void removeAllCartItems(Cart cart) {

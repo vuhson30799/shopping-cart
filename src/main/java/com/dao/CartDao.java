@@ -6,7 +6,7 @@ import com.model.Cart;
 
 public interface CartDao {
 
-	Cart getCartByCartId(String CartId);
+	Cart getCartByCartId(String cartId);
 	
 	Cart validate(String cartId) throws IOException;
 	

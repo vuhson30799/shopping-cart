@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	public Customer getCustomerByemailId(String emailId) {
-		return customerDao.getCustomerByemailId(emailId);
+		return customerDao.getCustomerByEmailId(emailId);
 	}
 
 }

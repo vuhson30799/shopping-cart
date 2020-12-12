@@ -1,14 +1,13 @@
 package com.model;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "authorities")
 public class Authorities implements Serializable {
 
@@ -19,29 +18,5 @@ public class Authorities implements Serializable {
 	private String authorityId;
 	private String emailId;
 	private String authorities;
-
-	public String getAuthorityId() {
-		return authorityId;
-	}
-
-	public void setAuthorityId(String authorityId) {
-		this.authorityId = authorityId;
-	}
-
-	public String getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(String authorities) {
-		this.authorities = authorities;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
 
 }

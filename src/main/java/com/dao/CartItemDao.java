@@ -6,7 +6,7 @@ import com.model.CartItem;
 public interface CartItemDao {
 
 	void addCartItem(CartItem cartItem);
-	void removeCartItem(String CartItemId);
+	void removeCartItem(String cartItemId);
 	void removeAllCartItems(Cart cart);
 
 }
