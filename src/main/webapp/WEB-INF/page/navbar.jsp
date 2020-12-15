@@ -44,12 +44,12 @@
 						List</a></li>
 				<li><a href=" <c:url value="/aboutus" />">About Us</a></li>
 				
-				<security:authorize access="hasRole('ROLE_USER')">
+				<security:authorize access="hasRole('USER')">
 				<li><a href=" <c:url value="/contactus" />">Contact Us</a></li>
 				</security:authorize>
 				
 				<!-- 			Only admin can view this link -->
-				<security:authorize access="hasRole('ROLE_ADMIN')">
+				<security:authorize access="hasRole('ADMIN')">
 					<li><a href=" <c:url value="/admin/product/addProduct" />">Add
 							Product</a></li>
 				</security:authorize>
@@ -61,7 +61,7 @@
 					<li><a href="<c:url value="/index1" />"><span
 							class="glyphicon glyphicon-shopping-user"></span>Welcome..${pageContext.request.userPrincipal.name}</a></li>
 
-					<security:authorize access="hasRole('ROLE_USER')">
+					<security:authorize access="hasRole('USER')">
 						<li><a href="<c:url value="/cart/getCartById" />"><span
 								class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 					</security:authorize>

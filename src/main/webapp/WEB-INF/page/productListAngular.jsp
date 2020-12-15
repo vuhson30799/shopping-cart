@@ -42,10 +42,10 @@
 							<th>Stock Unit</th>
 							<th>Description</th>
 							<th>Manufacturer</th>
-							<th>View <security:authorize ifAnyGranted="ROLE_USER">
+							<th>View <security:authorize ifAnyGranted="USER">
 					/ Add to Cart
 					</security:authorize> <!-- 					views only to the admin --> <security:authorize
-									ifAnyGranted="ROLE_ADMIN">
+									ifAnyGranted="ADMIN">
 					/Edit/Delete
 					</security:authorize>
 							</th>
@@ -56,7 +56,7 @@
 						<tr ng-repeat="b in products | filter:searchCondition">
 							<td style="width: 171px"><img
 								src="<c:url value="../resource/images/products/{{b.productId}}.jpg"/>"
-								style="width: 100px; height: 90px;" {{b.productName}}"  /></td>
+								style="width: 100px; height: 90px;" alt="{{b.productName}}"  /></td>
 							<td>{{b.productId}}</td>
 							<td>{{b.productCategory}}</td>
 							<td>{{b.productName}}</td>
@@ -67,12 +67,12 @@
 							<td><a href="getProductById/{{b.productId}}"
 								class="btn btn-info" role="button"> <span
 									class="glyphicon glyphicon-info-sign"></span></a> <!-- 						view only for user 
-								<security:authorize ifAnyGranted="ROLE_USER">
+								<security:authorize ifAnyGranted="USER">
 									<a href="#" ng-click="addToCart(${b.productId})" class="btn btn-primary"
 										style="margin-left: 5px"> <span
 										class="glyphicon glyphicon-shopping-cart"></span></a>
 								</security:authorize> --> <!-- 						view only to the admin -->
-								<security:authorize ifAnyGranted="ROLE_ADMIN">
+								<security:authorize ifAnyGranted="ADMIN">
 									<a href="admin/product/editProduct/{{b.productId}}"
 										class="btn btn-success" style="margin-left: 5px"> <span
 										class="glyphicon glyphicon-edit"></span></a>

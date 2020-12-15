@@ -51,6 +51,9 @@ public class Product implements Serializable {
 	@Column(name = "unit")
 	private String unitStock;
 
+	@Column(name = "image")
+	private String image;
+
 	@Transient
 	private MultipartFile productImage;
 

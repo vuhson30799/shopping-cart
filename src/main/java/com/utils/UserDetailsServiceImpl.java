@@ -28,9 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         GrantedAuthority grantedAuthority;
         if (ADMIN_EMAIL.equals(user.getEmailId())) {
-            grantedAuthority = new SimpleGrantedAuthority("ADMIN");
+            grantedAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
         } else {
-            grantedAuthority = new SimpleGrantedAuthority("USER");
+            grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
         }
         return  new org.springframework.security.core.userdetails.User(user.getEmailId(), user.getPassword(), Arrays.asList(grantedAuthority));
     }

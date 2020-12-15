@@ -1,10 +1,5 @@
 package com.config;
 
-import com.repository.AuthoritiesRepository;
-import com.repository.CustomerRepository;
-import com.service.CustomerService;
-import com.service.CustomerServiceImpl;
-import com.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,6 +13,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -34,7 +31,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.repository")
-@PropertySource("classpath:psql-database.properties")
+@PropertySource({"classpath:psql-database.properties", "classpath:system.properties"})
 public class WebConfig implements WebMvcConfigurer {
     @Value("${spring.datasource.driver-class-name}")
     private String driverName;
@@ -106,5 +103,16 @@ public class WebConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/resource/**")
                 .addResourceLocations("/WEB-INF/resource/");
+    }
+
+    // Configuration for MultiPartResolver
+    // Multipart resolver is for uploading images and other media
+    // maxupload size is for image size should not be maximum than 10240000
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(10240000);
+        return multipartResolver;
     }
 }

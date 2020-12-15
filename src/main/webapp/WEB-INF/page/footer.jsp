@@ -22,7 +22,7 @@
 	<div class="footer-right">
 		<a href="<c:url value="/index1"/>"><span
 			class="glyphicon glyphicon-home"></span></a>
-		<security:authorize access="hasRole('ROLE_USER')">
+		<security:authorize access="hasRole('USER')">
 			<a href="<spring:url value="/cart/getCartById" />"><span class="glyphicon glyphicon-shopping-cart"></a>
 		</security:authorize>
 		<a href="<c:url value="/login"/>"><span

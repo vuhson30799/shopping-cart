@@ -38,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/index1/**",
                         "/login",
                         "/cart/**").permitAll()
-                .antMatchers("/get*/**").hasAnyRole("ROLE_ADMIN","ROLE_USER")
-                .antMatchers("/admin*/**").hasAnyRole("ROLE_ADMIN")
+                .antMatchers("/get*/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/admin*/**").hasAnyRole("ADMIN")
                 .and().formLogin()
                 .loginPage("/login").permitAll()
                 .usernameParameter("j_username")
