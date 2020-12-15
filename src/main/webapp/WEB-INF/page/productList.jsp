@@ -53,7 +53,7 @@
 					<tr>
 						<td style="width: 171px"><img
 							src="<c:url value="/resource/images/products/${prod.productId}.jpg"/>"
-							style="width: 100px; height: 90px;" ${prod.productName}"  /></td>
+							style="width: 100px; height: 90px;" alt="${prod.productName}"  /></td>
 						<td>${prod.productId}</td>
 						<td>${prod.productCategory}</td>
 						<td>${prod.productName}</td>

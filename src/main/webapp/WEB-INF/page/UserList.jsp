@@ -12,11 +12,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Product Management</title>
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+	href="<c:url value="../resource/bootstrap/css/bootstrap.min.css"/>">
+<script src="<c:url value="../resource/js/jquery.js"/>"></script>
+<script src="<c:url value="../resource/bootstrap/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/productList.css"/>">
+	href="<c:url value="../resource/css/productList.css"/>">
 </head>
 <body>
 	<div class="container" id="productTable" style="width:1145px;margin-bottom: 180px;">

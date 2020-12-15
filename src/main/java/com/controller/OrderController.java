@@ -1,6 +1,5 @@
 package com.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +12,17 @@ import com.service.CustomerOrderService;
 
 @Controller
 public class OrderController {
+	private final CartService cartService;
+	private final CustomerOrderService customerOrderService;
 
-	@Autowired
-	private CartService cartService;
-
-	@Autowired
-	private CustomerOrderService customerOrderService;
+	public OrderController(CartService cartService,
+						   CustomerOrderService customerOrderService) {
+		this.cartService = cartService;
+		this.customerOrderService = customerOrderService;
+	}
 
 	@RequestMapping("/order/{cartId}")
-	public String createOrder(@PathVariable("cartId") String cartId) {
+	public String createOrder(@PathVariable("cartId") Long cartId) {
 
 		CustomerOrder customerOrder = new CustomerOrder();
 

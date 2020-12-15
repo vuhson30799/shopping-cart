@@ -1,36 +1,47 @@
 package com.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.model.Authorities;
+import com.model.Cart;
+import com.model.Customer;
+import com.repository.AuthoritiesRepository;
+import com.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dao.CustomerDao;
-import com.model.Customer;
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-	@Autowired
-	private CustomerDao customerDao;
+	private final CustomerRepository customerRepository;
+	private final AuthoritiesRepository authoritiesRepository;
+	private final UserService userService;
 
-	// The database transaction happens inside the scope of a persistence
-	// context. The persistence context is in JPA the EntityManager ,
-	// implemented internally using an Hibernate Session (when using Hibernate
-	// as the persistence provider).
+	public CustomerServiceImpl(CustomerRepository customerRepository, AuthoritiesRepository authoritiesRepository, UserService userService) {
+		this.customerRepository = customerRepository;
+		this.authoritiesRepository = authoritiesRepository;
+		this.userService = userService;
+	}
+
 
 	@Transactional
 	public void addCustomer(Customer customer) {
-		customerDao.addCustomer(customer);
+		customer.getUserInfo().setEnabled(true);
+
+		Authorities authorities = new Authorities();
+		authorities.setRole("ROLE_USER");
+		authorities.setEmailId(customer.getUserInfo().getEmailId());
+
+		customerRepository.save(customer);
+		authoritiesRepository.save(authorities);
 	}
 
 	public List<Customer> getAllCustomers() {
 
-		return customerDao.getAllCustomers();
+		return customerRepository.findAll();
 	}
 
-	public Customer getCustomerByemailId(String emailId) {
-		return customerDao.getCustomerByEmailId(emailId);
+	public Customer getCustomerByEmailId(String emailId) {
+		return userService.getUserByEmail(emailId).getCustomer();
 	}
 
 }

@@ -34,112 +34,112 @@
 					<div class="col-sm-12">
 						<div class="row">
 							<div>
-								<center>User Details</center>
+								<div style="text-align: center;">User Details</div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="firstName">First Name</form:label>
 								<form:input type="text" placeholder="Enter First Name.."
-									class="form-control" path="firstName"></form:input>
-								<form:errors path="firstName"></form:errors>
+									class="form-control" path="firstName"/>
+								<form:errors path="firstName"/>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="lastName">Last Name</form:label>
 								<form:input type="text" placeholder="Enter Last Name.."
-									class="form-control" path="lastName"></form:input>
+									class="form-control" path="lastName"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
-								<form:label path="users.emailId">Email Id</form:label>
+								<form:label path="userInfo.emailId">Email Id</form:label>
 								<form:input type="text" placeholder="Enter Email ID.."
-									class="form-control" path="users.emailId"></form:input>
-								<form:errors path="users.emailId"></form:errors>
+									class="form-control" path="userInfo.emailId"/>
+								<form:errors path="userInfo.emailId"/>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="customerPhone">Phone Number</form:label>
 								<form:input type="text" placeholder="Enter Phone Number.."
-									class="form-control" path="customerPhone"></form:input>
-								<form:errors path="customerPhone"></form:errors>
+									class="form-control" path="customerPhone"/>
+								<form:errors path="customerPhone"/>
 							</div>
 						</div>
 						<hr>
 						<div>
-							<center>Shipping Address</center>
+							<div style="text-align: center;">Shipping Address</div>
 						</div>
 						<div class="form-group">
 							<form:label path="shippingAddress.address">Address</form:label>
 							<form:textarea type="text" placeholder="Enter Shipping Address.."
-								class="form-control" path="shippingAddress.address"></form:textarea>
+								class="form-control" path="shippingAddress.address"/>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<form:label path="shippingAddress.city">City</form:label>
 								<form:input type="text" placeholder="Enter Current City.."
-									class="form-control" path="shippingAddress.city"></form:input>
+									class="form-control" path="shippingAddress.city"/>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="shippingAddress.state">State</form:label>
 								<form:input type="text" placeholder="Enter your State.."
-									class="form-control" path="shippingAddress.state"></form:input>
-								<form:errors path="shippingAddress.state"></form:errors>
+									class="form-control" path="shippingAddress.state"/>
+								<form:errors path="shippingAddress.state"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<form:label path="shippingAddress.country">Country</form:label>
 								<form:input type="text" placeholder="Enter your country.."
-									class="form-control" path="shippingAddress.country"></form:input>
+									class="form-control" path="shippingAddress.country"/>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="shippingAddress.zipcode">Zipcode</form:label>
 								<form:input type="text" placeholder="Enter zipcode.."
-									class="form-control" path="shippingAddress.zipcode"></form:input>
-								<form:errors path="shippingAddress.zipcode"></form:errors>
+									class="form-control" path="shippingAddress.zipcode"/>
+								<form:errors path="shippingAddress.zipcode"/>
 							</div>
 						</div>
 						<hr>
 						<div>
-							<center>Billing Address</center>
+							<div style="text-align: center;">Billing Address</div>
 						</div>
 						<div class="form-group">
 							<form:label path="billingAddress.address">Address</form:label>
 							<form:textarea type="text" placeholder="Enter Billing Address.."
-								class="form-control" path="billingAddress.address"></form:textarea>
+								class="form-control" path="billingAddress.address"/>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<form:label path="billingAddress.city">City</form:label>
 								<form:input type="text" placeholder="Enter your City.."
-									class="form-control" path="billingAddress.city"></form:input>
+									class="form-control" path="billingAddress.city"/>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="billingAddress.state">State</form:label>
 								<form:input type="text" placeholder="Enter your state.."
-									class="form-control" path="billingAddress.state"></form:input>
-								<form:errors path="billingAddress.state"></form:errors>
+									class="form-control" path="billingAddress.state"/>
+								<form:errors path="billingAddress.state"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<form:label path="billingAddress.country">Country</form:label>
 								<form:input type="text" placeholder="Enter your City.."
-									class="form-control" path="billingAddress.country"></form:input>
+									class="form-control" path="billingAddress.country"/>
 							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="billingAddress.zipcode">Zipcode</form:label>
 								<form:input type="text" placeholder="Enter Zipcode.."
-									class="form-control" path="billingAddress.zipcode"></form:input>
-								<form:errors path="billingAddress.zipcode"></form:errors>
+									class="form-control" path="billingAddress.zipcode"/>
+								<form:errors path="billingAddress.zipcode"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
-								<form:label path="users.password">Password</form:label>
+								<form:label path="userInfo.password">Password</form:label>
 								<form:input type="password" placeholder="********"
-									class="form-control" path="users.password" id="pass"></form:input>
+											class="form-control" path="userInfo.password" id="pass"/>
 							</div>
 							<div class="col-sm-6 form-group">
-								<label>Confirm Password</label> <input type="password"
+								<label for="confirmpass">Confirm Password</label> <input type="password"
 									placeholder="********" class="form-control" id="confirmpass" />
 							</div>
 						</div>

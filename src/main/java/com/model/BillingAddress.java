@@ -1,86 +1,39 @@
 package com.model;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "billingAddress")
+@Data
+@Table(name = "billing_address")
 public class BillingAddress implements Serializable {
 
 	private static final long serialVersionUID = 1028098616457762743L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String billindAddressId;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long billingAddressId;
+
+	@Column(name = "address")
 	private String address;
+
+	@Column(name = "city")
 	private String city;
+
+	@Column(name = "state")
 	private String state;
+
+	@Column(name = "zipcode")
 	private String zipcode;
+
+	@Column(name = "country")
 	private String country;
 
 	@OneToOne(mappedBy = "billingAddress")
 	private Customer customer;
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public String getBillindAddressId() {
-		return billindAddressId;
-	}
-
-	public void setBillindAddressId(String billindAddressId) {
-		this.billindAddressId = billindAddressId;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
 
 }

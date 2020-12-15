@@ -4,5 +4,5 @@ import com.model.Cart;
 
 public interface CartService {
 
-	Cart getCartByCartId(String CartId);
+	Cart getCartByCartId(Long cartId);
 }

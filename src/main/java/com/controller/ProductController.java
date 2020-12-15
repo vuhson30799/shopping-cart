@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,17 +29,9 @@ import com.service.ProductService;
 
 @Controller
 public class ProductController {
+	private final ProductService productService;
 
-	@Autowired
-	private ProductService productService;
-
-	// Getters and Setters
-
-	public ProductService getProductService() {
-		return productService;
-	}
-
-	public void setProductService(ProductService productService) {
+	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
 
@@ -75,17 +66,17 @@ public class ProductController {
 	// this is used for getting the product by productId
 
 	@RequestMapping("getProductById/{productId}")
-	public ModelAndView getProductById(@PathVariable(value = "productId") String productId) {
+	public ModelAndView getProductById(@PathVariable(value = "productId") Long productId) {
 		Product product = productService.getProductById(productId);
 		return new ModelAndView("productPage", "productObj", product);
 	}
 
 	@RequestMapping("/admin/delete/{productId}")
-	public String deleteProduct(@PathVariable(value = "productId") String productId) {
+	public String deleteProduct(@PathVariable(value = "productId") Long productId) {
 
 		// Here the Path class is used to refer the path of the file
 
-		Path path = Paths.get("C:/Users/Ismail/workspace/ShoppingCart/src/main/webapp/WEB-INF/resource/images/products/"
+		Path path = Paths.get("/ShoppingCart/src/main/webapp/WEB-INF/resource/images/products/"
 				+ productId + ".jpg");
 
 		if (Files.exists(path)) {
@@ -139,7 +130,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/admin/product/editProduct/{productId}")
-	public ModelAndView getEditForm(@PathVariable(value = "productId") String productId) {
+	public ModelAndView getEditForm(@PathVariable(value = "productId") Long productId) {
 		Product product = productService.getProductById(productId);
 		return new ModelAndView("editProduct", "editProductObj", product);
 	}

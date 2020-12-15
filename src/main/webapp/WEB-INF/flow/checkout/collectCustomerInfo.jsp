@@ -7,16 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
-<link rel="stylesheet" type="text/css"	href="<c:url value="/resource/css/register.css"/>">
+	href="<c:url value="/WEB-INF/resource/bootstrap/css/bootstrap.min.css"/>">
+<script src="<c:url value="/WEB-INF/resource/js/jquery.js"/>"></script>
+<script src="<c:url value="/WEB-INF/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+<link rel="stylesheet" type="text/css"	href="<c:url value="/WEB-INF/resource/css/register.css"/>">
 
 </head>
-<body style="padding: 0px;">
+<body style="padding: 0;">
 
 	<div class="container" style="margin-bottom: 19px">
-		<center><h1 class="well">Customer Details!</h1></center>
+		<div style="text-align: center;"><h1 class="well">Customer Details!</h1></div>
 		<div class="col-lg-12 well">
 			<div class="row">
 
@@ -36,7 +36,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
-								<label for="users.emailId">Email Id</label>
+								<label for="userInfo.emailId">Email Id</label>
 								<form:input type="text" class="form-control"
 									path="cart.customer.users.emailId"></form:input>
 							</div>

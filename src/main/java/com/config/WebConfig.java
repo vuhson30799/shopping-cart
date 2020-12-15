@@ -1,67 +1,73 @@
 package com.config;
 
-import lombok.RequiredArgsConstructor;
-import org.h2.tools.Server;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import com.repository.AuthoritiesRepository;
+import com.repository.CustomerRepository;
+import com.service.CustomerService;
+import com.service.CustomerServiceImpl;
+import com.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@RequiredArgsConstructor
 @ComponentScan(basePackages = "com")
 @EnableTransactionManagement
-public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
-    private ApplicationContext applicationContext;
+@EnableJpaRepositories(basePackages = "com.repository")
+@PropertySource("classpath:psql-database.properties")
+public class WebConfig implements WebMvcConfigurer {
+    @Value("${spring.datasource.driver-class-name}")
+    private String driverName;
 
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+    @Value("${spring.datasource.url}")
+    private String url;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
+    @Value("${spring.jpa.database-platform}")
+    private String dialect;
+
+    @Bean
+    public CustomerService customerService(CustomerRepository customerRepository,
+                                           AuthoritiesRepository authoritiesRepository,
+                                           UserService userService) {
+        return new CustomerServiceImpl(customerRepository, authoritiesRepository, userService);
     }
-
-    @Bean(initMethod = "start", destroyMethod = "stop")
-    public Server inMemoryH2DatabaseServer() throws SQLException {
-        return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9090");
-    }
-
     @Bean
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .generateUniqueName(false)
-                .setName("ecommerce")
-                .setType(EmbeddedDatabaseType.H2)
-                .ignoreFailedDrops(true)
-                .build();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(driverName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
     }
 
     @Bean
-    @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory){
         return entityManagerFactory.createEntityManager();
     }
@@ -80,14 +86,11 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
     Properties additionalProperties(){
         Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.setProperty("hibernate.dialect", dialect);
         properties.setProperty("spring.jpa.hibernate.ddl-auto", "update");
         return properties;
     }
-    /*A transaction manager is the part of an application that is responsible
-    for coordinating transactions across one or more resources. In the Spring
-    framework, the transaction manager is effectively the root of the transaction
-    system.*/
+
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
     {

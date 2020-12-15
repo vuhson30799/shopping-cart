@@ -1,6 +1,5 @@
 package com.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -17,25 +16,13 @@ import com.service.CustomerService;
 @Controller
 public class CartController {
 
-	@Autowired
-	private CustomerService customerService;
-	
-	@Autowired
-	private CartService cartService;
+	private final CustomerService customerService;
 
-	public CustomerService getCustomerService() {
-		return customerService;
-	}
+	private final CartService cartService;
 
-	public void setCustomerService(CustomerService customerService) {
+	public CartController(CustomerService customerService,
+						  CartService cartService) {
 		this.customerService = customerService;
-	}
-
-	public CartService getCartService() {
-		return cartService;
-	}
-
-	public void setCartService(CartService cartService) {
 		this.cartService = cartService;
 	}
 	
@@ -43,13 +30,13 @@ public class CartController {
 	public String getCartId(Model model){
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String emailId = user.getUsername();
-		Customer customer = customerService.getCustomerByemailId(emailId);
+		Customer customer = customerService.getCustomerByEmailId(emailId);
 		model.addAttribute("cartId", customer.getCart().getCartId());
 		return "cart";
 	}
 	
 	@RequestMapping("/cart/getCart/{cartId}")
-	public @ResponseBody Cart getCartItems(@PathVariable(value="cartId")String cartId){
+	public @ResponseBody Cart getCartItems(@PathVariable(value="cartId")Long cartId){
 		return cartService.getCartByCartId(cartId);
 	}
 	

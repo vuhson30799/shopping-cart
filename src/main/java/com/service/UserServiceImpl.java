@@ -2,36 +2,42 @@ package com.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dao.UserDao;
 import com.model.User;
 
 @Service
 public class UserServiceImpl implements UserService {
+	private final UserRepository userRepository;
 
-	@Autowired
-	private UserDao userDao;
-	
-	@Transactional
-	public List<User> getAllUsers() {
-	return userDao.getAllUsers();
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
 
 	@Transactional
-	public void deleteUser(String userId) {
-		userDao.deleteUser(userId);
+	public List<User> getAllUsers() {
+	return userRepository.findAll();
+	}
+
+	@Transactional
+	public void deleteUser(Long userId) {
+		userRepository.deleteById(userId);
 	}
 	@Transactional 
 	public void addUser(User user){
-		userDao.addUser(user);
+		userRepository.save(user);
 	}
 	
-	public User getUserById(String userId) {
-		return userDao.getUserById(userId);
+	public User getUserById(Long userId) {
+		return userRepository.findById(userId).orElseThrow();
 	}
 
-	
+	@Override
+	public User getUserByEmail(String emailId) {
+		return userRepository.findByEmailId(emailId);
+	}
+
+
 }

@@ -14,9 +14,14 @@ public class Authorities implements Serializable {
 	private static final long serialVersionUID = 8734140534986494039L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String authorityId;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long authorityId;
+
+	@Column(name = "email_id")
 	private String emailId;
-	private String authorities;
+
+	@Column(name = "role")
+	private String role;
 
 }

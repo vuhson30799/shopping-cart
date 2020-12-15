@@ -2,7 +2,6 @@ package com.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -23,60 +22,32 @@ import com.service.ProductService;
 @Controller
 public class CartItemController {
 
-	@Autowired
-	private CartService cartService;
+	private final CartService cartService;
 
-	@Autowired
-	private CartItemService cartItemService;
+	private final CartItemService cartItemService;
 
-	@Autowired
-	private CustomerService customerService;
+	private final CustomerService customerService;
 
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
 
-	
-	public CustomerService getCustomerService() {
-		return customerService;
-	}
-
-	public void setCustomerService(CustomerService customerService) {
-		this.customerService = customerService;
-	}
-
-	public ProductService getProductService() {
-		return productService;
-	}
-
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-
-	public CartService getCartService() {
-		return cartService;
-	}
-
-	public void setCartService(CartService cartService) {
+	public CartItemController(CartService cartService,
+							  CartItemService cartItemService,
+							  CustomerService customerService,
+							  ProductService productService) {
 		this.cartService = cartService;
-	}
-
-	public CartItemService getCartItemService() {
-		return cartItemService;
-	}
-
-	public void setCartItemService(CartItemService cartItemService) {
 		this.cartItemService = cartItemService;
+		this.customerService = customerService;
+		this.productService = productService;
 	}
 
 	@RequestMapping("/cart/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void addCartItem(@PathVariable(value = "productId") String productId) {
+	public void addCartItem(@PathVariable(value = "productId") Long productId) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String emailId = user.getUsername();
-		Customer customer = customerService.getCustomerByemailId(emailId);
-		System.out.println("Customer : " + customer.getUsers().getEmailId());
+		Customer customer = customerService.getCustomerByEmailId(emailId);
+		System.out.println("Customer : " + customer.getUserInfo().getEmailId());
 		Cart cart = customer.getCart();
-		System.out.println(cart);
 		List<CartItem> cartItems = cart.getCartItem();
 		Product product = productService.getProductById(productId);
 		for (int i = 0; i < cartItems.size(); i++) {
@@ -98,13 +69,13 @@ public class CartItemController {
 
 	@RequestMapping("/cart/removeCartItem/{cartItemId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void removeCartItem(@PathVariable(value = "cartItemId") String cartItemId) {
+	public void removeCartItem(@PathVariable(value = "cartItemId") Long cartItemId) {
 		cartItemService.removeCartItem(cartItemId);
 	}
 
 	@RequestMapping("/cart/removeAllItems/{cartId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void removeAllCartItems(@PathVariable(value = "cartId") String cartId) {
+	public void removeAllCartItems(@PathVariable(value = "cartId") Long cartId) {
 		Cart cart = cartService.getCartByCartId(cartId);
 		cartItemService.removeAllCartItems(cart);
 	}

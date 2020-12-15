@@ -4,39 +4,34 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "customerorder")
+@Table(name = "customer_order")
 public class CustomerOrder implements Serializable {
 
 	private static final long serialVersionUID = -6571020025726257848L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String customerOrderId;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long customerOrderId;
 
 	@OneToOne
-	@JoinColumn(name = "cartId")
+	@JoinColumn(name = "cart_id")
 	private Cart cart;
 
 	@OneToOne
-	@JoinColumn(name = "customerId")
+	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
 	@OneToOne
-	@JoinColumn(name = "shippingAddressId")
+	@JoinColumn(name = "shipping_address_id")
 	private ShippingAddress shippingAddress;
 
 	@OneToOne
-	@JoinColumn(name = "billingAddressId")
+	@JoinColumn(name = "billing_address_id")
 	private BillingAddress billingAddress;
 
 }

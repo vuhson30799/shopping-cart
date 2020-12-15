@@ -5,5 +5,5 @@ import com.model.CustomerOrder;
 public interface CustomerOrderService {
 
 	void addCustomerOrder(CustomerOrder customerOrder);
-	double getCustomerOrderGrandTotal(String cartId);
+	double getCustomerOrderGrandTotal(Long cartId);
 }
