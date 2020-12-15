@@ -1,6 +1,7 @@
 package com.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@ToString(exclude="customer")
 @Table(name = "billing_address")
 public class BillingAddress implements Serializable {
 

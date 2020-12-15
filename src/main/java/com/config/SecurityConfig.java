@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -18,26 +19,16 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth)
+    public void configureGlobal(AuthenticationManagerBuilder auth,
+                                UserDetailsService userDetailsService)
             throws Exception {
-        auth.inMemoryAuthentication().withUser("user")
-                .password(passwordEncoder().encode("password")).roles("USER");
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider(DataSource dataSource) {
-        JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager();
-        detailsManager.setDataSource(dataSource);
-        detailsManager.setAuthoritiesByUsernameQuery("SELECT emailId,authorities FROM authorities WHERE emailId =?");
-        detailsManager.setUsersByUsernameQuery("SELECT emailId, password, enabled FROM users WHERE emailId=?");
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(detailsManager);
-        return provider;
     }
 
     @Override
@@ -53,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
-                .loginProcessingUrl("j_spring_security_check")
+                .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/login?error")
                 .defaultSuccessUrl("/index1")
                 .and().logout()

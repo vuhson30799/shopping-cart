@@ -7,9 +7,11 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = "customer")
 @Table(name = "cart")
 public class Cart implements Serializable {
 
@@ -27,6 +29,7 @@ public class Cart implements Serializable {
 	@OneToMany
 	private List<CartItem> cartItem;
 
+	@Transient
 	private double totalPrice;
 
 }

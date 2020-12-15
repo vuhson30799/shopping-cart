@@ -1,12 +1,14 @@
 package com.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Data
+@ToString(exclude = "customer")
 @Table(name = "user_info")
 public class User implements Serializable {
 

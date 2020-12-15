@@ -1,6 +1,7 @@
 package com.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 

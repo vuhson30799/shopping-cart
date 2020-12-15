@@ -60,12 +60,16 @@
 						action="<c:url value="/j_spring_security_check"/>" method="post">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail"
-									name="j_username" type="email">
+								<label>
+									<input class="form-control" placeholder="E-mail"
+										name="j_username" type="text"/>
+								</label>
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Password"
-									name="j_password" type="password">
+								<label>
+									<input class="form-control" placeholder="Password"
+										name="j_password" type="password"/>
+								</label>
 							</div>
 							<div class="checkbox">
 								<c:if test="${not empty error}">

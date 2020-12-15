@@ -52,12 +52,6 @@ public class WebConfig implements WebMvcConfigurer {
     private String dialect;
 
     @Bean
-    public CustomerService customerService(CustomerRepository customerRepository,
-                                           AuthoritiesRepository authoritiesRepository,
-                                           UserService userService) {
-        return new CustomerServiceImpl(customerRepository, authoritiesRepository, userService);
-    }
-    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverName);
