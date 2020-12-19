@@ -1,17 +1,16 @@
 package com.controller;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.model.Cart;
 import com.model.Customer;
 import com.service.CartService;
 import com.service.CustomerService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CartController {
@@ -26,7 +25,7 @@ public class CartController {
 		this.cartService = cartService;
 	}
 	
-	@RequestMapping("cart/getCartById")
+	@GetMapping("cart/getCartById")
 	public String getCartId(Model model){
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String emailId = user.getUsername();
@@ -35,7 +34,7 @@ public class CartController {
 		return "cart";
 	}
 	
-	@RequestMapping("/cart/getCart/{cartId}")
+	@GetMapping("/cart/getCart/{cartId}")
 	public @ResponseBody Cart getCartItems(@PathVariable(value="cartId")Long cartId){
 		return cartService.getCartByCartId(cartId);
 	}

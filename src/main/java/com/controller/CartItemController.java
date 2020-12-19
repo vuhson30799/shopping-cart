@@ -1,7 +1,9 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.exception.ApplicationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -46,25 +48,7 @@ public class CartItemController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String emailId = user.getUsername();
 		Customer customer = customerService.getCustomerByEmailId(emailId);
-		System.out.println("Customer : " + customer.getUserInfo().getEmailId());
-		Cart cart = customer.getCart();
-		List<CartItem> cartItems = cart.getCartItem();
-		Product product = productService.getProductById(productId);
-		for (int i = 0; i < cartItems.size(); i++) {
-			CartItem cartItem = cartItems.get(i);
-			if (product.getProductId().equals(cartItem.getProduct().getProductId())) {
-				cartItem.setQuality(cartItem.getQuality() + 1);
-				cartItem.setPrice(cartItem.getQuality() * cartItem.getProduct().getProductPrice());
-				cartItemService.addCartItem(cartItem);
-				return;
-			}
-		}
-		CartItem cartItem = new CartItem();
-		cartItem.setQuality(1);
-		cartItem.setProduct(product);
-		cartItem.setPrice(product.getProductPrice() * 1);
-		cartItem.setCart(cart);
-		cartItemService.addCartItem(cartItem);
+		cartItemService.addCartItem(productId, customer);
 	}
 
 	@RequestMapping("/cart/removeCartItem/{cartItemId}")

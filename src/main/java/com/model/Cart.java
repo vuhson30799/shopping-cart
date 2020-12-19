@@ -11,7 +11,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-@ToString(exclude = "customer")
+@ToString(exclude = {"customer", "cartItem"})
 @Table(name = "cart")
 public class Cart implements Serializable {
 
@@ -28,8 +28,4 @@ public class Cart implements Serializable {
 
 	@OneToMany
 	private List<CartItem> cartItem;
-
-	@Transient
-	private double totalPrice;
-
 }
