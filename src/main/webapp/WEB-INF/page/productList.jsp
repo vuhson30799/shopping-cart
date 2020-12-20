@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon"
           href="<c:url value="../resource/images/favicon1.png"/>"/>
     <link rel="stylesheet"
-          href="<c:url value="../resource/bootstrap/css/bootstrap.min.css"/>">
+          href="<c:url value="../resource/bootstrap/css/custom.css"/>">
     <script src="<c:url value="../resource/js/jquery.js"/>"
 			type="text/javascript"></script>
     <script src="<c:url value="../resource/bootstrap/js/bootstrap.min.js"/>"
