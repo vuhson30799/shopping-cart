@@ -11,9 +11,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Products</title>
     <link rel="icon" type="image/x-icon"
-          href="<c:url value="../resource/images/favicon1.png"/>"/>
+          href="<c:url value="/resource/images/favicon1.png"/>"/>
 	<link rel="stylesheet"
-		  href="<c:url value="../resource/bootstrap/css/bootstrap.min.css"/>">
+		  href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
     <script
             src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="text/javascript"></script>
     <script src="<c:url value="../resource/js/productController.js"/>" type="text/javascript"></script>
