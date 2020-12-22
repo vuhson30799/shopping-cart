@@ -1,10 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ include file="/WEB-INF/page/navbar.jsp"%>
 <%@ page isELIgnored="false"%>
-<!DOCTYPE jsp:useBean PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="/resource/bootstrap/css/bootstrap.min.css">
@@ -21,7 +19,7 @@
 				<div class="container">
 					<h1>Thank you for your business!</h1>
 
-					<p>Your order will be delivered within </p>
+					<p>Your order will be delivered within two days</p>
 				</div>
 			</div>
 <%@ include file="/WEB-INF/page/countdown.jsp"%>

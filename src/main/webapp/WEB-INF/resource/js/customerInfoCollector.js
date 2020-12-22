@@ -8,7 +8,7 @@ function cancelCollectCustomerInfo(cartId) {
             $(location)[0].href = 'http://localhost:8080/cart/getCartById/'
     },
         error: function () {
-            $(location)[0].href = 'http://localhost:8080/index1?errorMessage=' + 'Technical Error'
+            $(location)[0].href = 'http://localhost:8080/home?errorMessage=' + 'Technical Error'
         }
     })
 }
@@ -36,7 +36,7 @@ function orderConfirmation(cartId) {
         contentType: 'application/json',
         data: JSON.stringify(data),
         error: function () {
-            $(location)[0].href = 'http://localhost:8080/index1?errorMessage=' + 'Technical Error'
+            $(location)[0].href = 'http://localhost:8080/home?errorMessage=' + 'Technical Error'
         },
         success: function () {
             $(location)[0].href = 'http://localhost:8080/order/confirm/' + cartId
@@ -57,7 +57,7 @@ function submitOrder(customerOrderId) {
             $(location)[0].href = 'http://localhost:8080/order/thanks'
         },
         error: function () {
-            $(location)[0].href = 'http://localhost:8080/index1?errorMessage=' + 'Technical Error'
+            $(location)[0].href = 'http://localhost:8080/home?errorMessage=' + 'Technical Error'
         }
     })
 }

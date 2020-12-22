@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page pageEncoding="UTF-8"
+		 contentType="text/html; charset=UTF-8"
+		 isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ page isELIgnored="false"%>
 
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Thank You</title>
 <link type="text/css" href=/resource/countdown/demo.css?v=1.0.0.0" rel="stylesheet">
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"

@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page pageEncoding="UTF-8"
+         contentType="text/html; charset=UTF-8"
+         isELIgnored="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page isELIgnored="false" %>
 <jsp:useBean id="now" class="java.util.Date"/>
-
 <%@ include file="/WEB-INF/page/navbar.jsp" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Insert title here</title>
     <link rel="stylesheet"
           href="/resource/bootstrap/css/bootstrap.min.css">

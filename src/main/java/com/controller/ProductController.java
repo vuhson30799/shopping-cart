@@ -74,9 +74,4 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/productsListAngular")
-    public String getProducts() {
-        return "productListAngular";
-    }
-
 }

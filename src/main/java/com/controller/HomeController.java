@@ -18,14 +18,9 @@ import com.service.QueriesService;
 @Controller
 public class HomeController {
 
-	@RequestMapping({ "/index", "/index1" })
-	public String sayIndex() {
-		return "index1";
-	}
-
-	@RequestMapping("/hello")
-	public ModelAndView sayHello() {
-		return new ModelAndView("hello", "hello", "Hello Mr.Ismail");
+	@RequestMapping({ "/index", "/home" })
+	public String home() {
+		return "home";
 	}
 
 	@RequestMapping("/login")

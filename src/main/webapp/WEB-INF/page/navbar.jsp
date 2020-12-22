@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page pageEncoding="UTF-8"
+		 contentType="text/html; charset=UTF-8"
+		 isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ page isELIgnored="false"%>
-
 <html>
 <head>
 <link rel="icon" type="image/x-icon" href="/resource/images/favicon1.png" />
@@ -34,30 +33,29 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<c:url value="/index1" />">ShopIeasy</a>
+			<a class="navbar-brand" href="<c:url value="/home" />">ShopIeasy</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href=" <c:url value="/index1" />">Home</a></li>
+				<li><a href=" <c:url value="/home" />">Home</a></li>
 				<li><a href=" <c:url value="/getAllProducts" />">Product
 						List</a></li>
-				<li><a href=" <c:url value="/aboutus" />">About Us</a></li>
-				
 				<security:authorize access="hasRole('USER')">
-				<li><a href=" <c:url value="/contactus" />">Contact Us</a></li>
+					<li><a href=" <c:url value="/order/history" />">History</a></li>
 				</security:authorize>
 				
 				<!-- 			Only admin can view this link -->
 				<security:authorize access="hasRole('ADMIN')">
-					<li><a href=" <c:url value="/admin/product/addProduct" />">Add
-							Product</a></li>
+					<li><a href=" <c:url value="/admin/product/addProduct" />">Add Product</a></li>
+					<li><a href=" <c:url value="/order/status" />">Order Status</a></li>
 				</security:authorize>
+				<li><a href=" <c:url value="/aboutus" />">About Us</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 
 				<c:if test="${!empty pageContext.request.userPrincipal.name}">
-					<li><a href="<c:url value="/index1" />"><span
+					<li><a href="<c:url value="/home" />"><span
 							class="glyphicon glyphicon-shopping-user"></span>Welcome..${pageContext.request.userPrincipal.name}</a></li>
 
 					<security:authorize access="hasRole('USER')">

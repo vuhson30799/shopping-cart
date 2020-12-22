@@ -1,21 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-
+<%@ page pageEncoding="UTF-8"
+         contentType="text/html; charset=UTF-8"
+         isELIgnored="false"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored="false" %>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Add Product</title>
     <link rel="stylesheet"
-          href="<c:url value="/resource/bootstrap/css/custom.css"/>">
-    <script src="<c:url value="/resource/js/jquery.js"/>"></script>
-    <script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+          href="/resource/bootstrap/css/custom.css">
+    <script src="/resource/js/jquery.js"></script>
+    <script src="/resource/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css"
-          href="<c:url value="/resource/css/register.css"/>">
-    <link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>"/>
+          href="/resource/css/register.css">
+    <link rel="icon" type="image/x-icon" href="/resource/images/favicon1.png"/>
 </head>
 <body>
 <%@ include file="navbar.jsp" %>

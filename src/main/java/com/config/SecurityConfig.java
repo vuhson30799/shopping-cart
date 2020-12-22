@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/index/**",
-                        "/index1/**",
+                        "/home/**",
                         "/login",
                         "/cart/**").permitAll()
                 .antMatchers("/get*/**").hasAnyRole("ADMIN","USER")
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("j_password")
                 .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/login?error")
-                .defaultSuccessUrl("/index1")
+                .defaultSuccessUrl("/home")
                 .and().logout()
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID")
