@@ -1,15 +1,15 @@
 package com.model;
 
-import java.io.Serializable;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 @Entity
 @Data
+@ToString(exclude = {"product", "cart"})
 @Table(name = "cart_item")
 public class CartItem implements Serializable {
 

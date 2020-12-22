@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cart</title>
-<link rel="icon" type="image/x-icon" href="<c:url value="../resource/images/favicon1.png"/>" />
+<link rel="icon" type="image/x-icon" href="/resource/images/favicon1.png" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -17,7 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="<c:url value="../resource/js/productController.js"/>"></script>
+<script src="/resource/js/productController.js"></script>
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>

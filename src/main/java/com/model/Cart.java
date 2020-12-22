@@ -26,6 +26,6 @@ public class Cart implements Serializable {
 	@JsonIgnore
 	private Customer customer;
 
-	@OneToMany
+	@OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
 	private List<CartItem> cartItem;
 }

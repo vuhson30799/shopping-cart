@@ -7,14 +7,13 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
+<link rel="icon" type="image/x-icon" href="/resource/images/favicon1.png" />
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/custom.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+	href="/resource/bootstrap/css/custom.css">
+<script src="/resource/js/jquery.js"></script>
+<script src="/resource/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/overall.css"/>">
+	href="/resource/css/overall.css">
 
 </head>
 <body>
@@ -24,9 +23,9 @@
 
 		<div class="nav navbar">
 			<img class="navbar-brand"
-				src="<c:url value="/resource/images/shopieasy-logo.png"/>"
+				src="/resource/images/shopieasy-logo.png"
 				href="<c:url value="/index"/>" width="200px" height="100px"
-				alt="logo-image"></img>
+				alt="logo-image"/>
 		</div>
 
 		<div class="navbar-header">

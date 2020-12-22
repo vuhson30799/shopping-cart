@@ -6,16 +6,14 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page isELIgnored="false"%>
-
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/custom.css"/>">
-<script src="<c:url value="/resource/js/jquery.js"/>"></script>
-<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
+	href="/resource/bootstrap/css/custom.css">
+<script src="/resource/js/jquery.js"></script>
+<script src="/resource/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/overall.css"/>">
+	href="/resource/css/overall.css">
 </head>
 <body>
 	<footer class="footer-distributed">

@@ -9,14 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Thank You</title>
-<link type="text/css" href=<c:url value="/resource/countdown/demo.css?v=1.0.0.0"/>rel="stylesheet">
+<link type="text/css" href=/resource/countdown/demo.css?v=1.0.0.0" rel="stylesheet">
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
-<link type="text/css" href=<c:url value="/resource/countdown/jquery.countdown.css?v=1.0.0.0"/>
+<link type="text/css" href="/resource/countdown/jquery.countdown.css?v=1.0.0.0"
 	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript"
-	src=<c:url value="/resource/countdown/jquery.countdown.min.js?v=1.0.0.0"/>></script>
+	src="/resource/countdown/jquery.countdown.min.js?v=1.0.0.0"></script>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
 	<script type="text/javascript">
 		$('#example').countdown({
 			//date format:  month/date/year
-			date : '11/24/2016 12:50:59',
+			date : '12/22/2020 12:50:59',
 			offset : -8,
 			day : 'Day',
 			days : 'Days'

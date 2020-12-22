@@ -15,9 +15,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	public Cart getCartByCartId(Long cartId) {
-		Cart cart = cartRepository.findById(cartId).orElseThrow();
-		cart.setCartItem(cartItemService.getCartItemByCart(cart));
-		return cart;
+		return cartRepository.findById(cartId).orElseThrow();
 	}
 
 	@Override

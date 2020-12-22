@@ -105,10 +105,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("/WEB-INF/resource/");
     }
 
-    // Configuration for MultiPartResolver
-    // Multipart resolver is for uploading images and other media
-    // maxupload size is for image size should not be maximum than 10240000
-
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
