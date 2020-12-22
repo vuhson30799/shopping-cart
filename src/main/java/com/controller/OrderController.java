@@ -2,10 +2,14 @@ package com.controller;
 
 import com.dto.CustomerOrderDTO;
 import com.exception.ApplicationException;
+import com.model.Customer;
 import com.model.CustomerOrder;
 import com.service.CustomerOrderService;
+import com.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,12 +32,9 @@ public class OrderController {
 
 	@GetMapping("/checkout")
 	public ModelAndView checkout(@RequestParam("cartId") Long cartId) {
-		List<CustomerOrder> customerOrders = customerOrderService.getCustomerOrderByCart(cartId);
-		if (customerOrders.isEmpty()) {
-			throw new ApplicationException("This customer order is not exist");
-		}
+		CustomerOrder customerOrder = customerOrderService.getCustomerOrderByCart(cartId);
 
-		return new ModelAndView("checkout/collectCustomerInfo", "customerOrder", customerOrders.get(0));
+		return new ModelAndView("checkout/collectCustomerInfo", "customerOrder", customerOrder);
 	}
 
 	@GetMapping("/order/cancel/{cartId}")
@@ -55,13 +56,19 @@ public class OrderController {
 
 	@GetMapping("/order/confirm/{cartId}")
 	public ModelAndView getConfirmation(@PathVariable("cartId") Long cartId) {
-		return new ModelAndView("/checkout/orderConfirmation", "order", customerOrderService.getCustomerOrderByCart(cartId).get(0));
+		return new ModelAndView("/checkout/orderConfirmation", "order", customerOrderService.getCustomerOrderByCart(cartId));
 	}
 
 	@PostMapping("/order/submit/{customerOrderId}")
 	public ResponseEntity<String> submitOrder(@PathVariable("customerOrderId") Long customerOrderId) {
 		customerOrderService.submitCustomerOrder(customerOrderId);
 		return new ResponseEntity<>("/checkout/thankCustomer", HttpStatus.OK);
+	}
+
+	@PutMapping("/order/finish/{cartId}")
+	public ResponseEntity<String> finishOrder(@PathVariable("cartId") Long cartId) {
+		customerOrderService.finishCustomerOrder(cartId);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping("/order/thanks")

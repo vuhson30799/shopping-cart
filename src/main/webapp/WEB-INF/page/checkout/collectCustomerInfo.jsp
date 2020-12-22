@@ -11,7 +11,7 @@
     <script src="/resource/js/jquery.js" type="text/javascript"></script>
     <script src="/resource/js/customerInfoCollector.js" type="text/javascript"></script>
     <script src="/resource/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/register.css"/>">
+    <link rel="stylesheet" type="text/css" href="/resource/css/register.css"/>
 
 </head>
 <body style="padding: 0;">

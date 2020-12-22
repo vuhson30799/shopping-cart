@@ -1,8 +1,11 @@
 package com.service;
 
 import com.model.Cart;
+import com.model.Customer;
 import com.repository.CartRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -19,6 +22,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void save(Cart cart) {
 		cartRepository.save(cart);
+	}
+
+	@Override
+	public List<Cart> findAllCustomerOrderByCustomer(Customer customer) {
+		return cartRepository.findAllByCustomer(customer);
 	}
 
 

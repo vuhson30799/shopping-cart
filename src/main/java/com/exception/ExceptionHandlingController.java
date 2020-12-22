@@ -11,8 +11,8 @@ public class ExceptionHandlingController {
         String error;
         if (e.getMessage() == null) {
             error = "Technical Error";
-            return new ModelAndView("home", "errorMessage", error);
+            return new ModelAndView("redirect:/home", "errorMessage", error);
         }
-        return new ModelAndView("home", "errorMessage", e.getMessage());
+        return new ModelAndView("redirect:/home", "errorMessage", e.getMessage());
     }
 }

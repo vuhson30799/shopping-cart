@@ -41,7 +41,7 @@
 				<li><a href=" <c:url value="/getAllProducts" />">Product
 						List</a></li>
 				<security:authorize access="hasRole('USER')">
-					<li><a href=" <c:url value="/order/history" />">History</a></li>
+					<li><a href=" <c:url value="/cart/history" />">History</a></li>
 				</security:authorize>
 				
 				<!-- 			Only admin can view this link -->
@@ -56,7 +56,7 @@
 
 				<c:if test="${!empty pageContext.request.userPrincipal.name}">
 					<li><a href="<c:url value="/home" />"><span
-							class="glyphicon glyphicon-shopping-user"></span>Welcome..${pageContext.request.userPrincipal.name}</a></li>
+							class="glyphicon glyphicon-shopping-user"></span>Welcome ${pageContext.request.userPrincipal.name}</a></li>
 
 					<security:authorize access="hasRole('USER')">
 						<li><a href="<c:url value="/cart/getCartById" />"><span

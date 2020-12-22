@@ -4,15 +4,11 @@ import java.util.List;
 
 import com.dto.CustomerOrderDTO;
 import com.exception.ApplicationException;
-import com.model.ShippingAddress;
+import com.model.*;
 import com.repository.CustomerOrderRepository;
 import com.repository.ShippingAddressRepository;
 import com.utils.CartState;
 import org.springframework.stereotype.Service;
-
-import com.model.Cart;
-import com.model.CartItem;
-import com.model.CustomerOrder;
 
 @Service
 public class CustomerOrderServiceImpl implements CustomerOrderService {
@@ -46,8 +42,12 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	}
 
 	@Override
-	public List<CustomerOrder> getCustomerOrderByCart(Long cartId) {
-		return customerOrderRepository.findByCart_CartId(cartId);
+	public CustomerOrder getCustomerOrderByCart(Long cartId) {
+		List<CustomerOrder> customerOrders = customerOrderRepository.findByCart_CartId(cartId);
+		if (customerOrders.isEmpty()) {
+			throw new ApplicationException("There is no order exist");
+		}
+		return customerOrders.get(customerOrders.size() - 1);
 	}
 
 	public double getCustomerOrderGrandTotal(Long cartId) {
@@ -81,6 +81,13 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		customerOrder.getCart().setStatus(CartState.CHECKOUT.name());
 		cartService.save(customerOrder.getCart());
 		cartService.save(new Cart(customerOrder.getCart().getCustomer()));
+	}
+
+	@Override
+	public void finishCustomerOrder(Long cartId) {
+		CustomerOrder customerOrder = getCustomerOrderByCart(cartId);
+		customerOrder.getCart().setStatus(CartState.DONE.name());
+		cartService.save(customerOrder.getCart());
 	}
 
 }

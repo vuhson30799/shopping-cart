@@ -51,4 +51,13 @@ var app = angular.module("myapp", []).controller(
 				return grandTotal;
 
 			}
+
+			$scope.confirmOrder = function (cartId) {
+				$http.put(BASE_PATH + "/order/finish/"
+					+ cartId).success(function() {
+						alert("Order finished!!")
+				}).error(function () {
+					$(location)[0].href = 'http://localhost:8080/home?errorMessage=' + 'Technical Error'
+				})
+			}
 		});
