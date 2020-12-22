@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -30,10 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public void addCustomer(Customer customer) {
 		customer.getUserInfo().setEnabled(true);
 		customer.getUserInfo().setPassword(passwordEncoder.encode(customer.getUserInfo().getPassword()));
-		Cart cart = new Cart();
-		cart.setCustomer(customer);
-		customer.setCart(cart);
-		cartService.addNewCart(cart);
+
+		Cart cart = new Cart(customer);
+		customer.setCarts(Arrays.asList(cart));
+
+		cartService.save(cart);
 		customerRepository.save(customer);
 	}
 

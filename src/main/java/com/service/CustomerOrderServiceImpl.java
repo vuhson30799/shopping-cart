@@ -7,6 +7,7 @@ import com.exception.ApplicationException;
 import com.model.ShippingAddress;
 import com.repository.CustomerOrderRepository;
 import com.repository.ShippingAddressRepository;
+import com.utils.CartState;
 import org.springframework.stereotype.Service;
 
 import com.model.Cart;
@@ -76,7 +77,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Override
 	public void submitCustomerOrder(Long customerOrderId) {
-		//TO_DO: nothing happens here
+		CustomerOrder customerOrder = customerOrderRepository.findById(customerOrderId).orElseThrow();
+		customerOrder.getCart().setStatus(CartState.CHECKOUT.name());
+		cartService.save(customerOrder.getCart());
+		cartService.save(new Cart(customerOrder.getCart().getCustomer()));
 	}
 
 }

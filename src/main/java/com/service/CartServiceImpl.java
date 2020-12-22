@@ -7,11 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CartServiceImpl implements CartService {
 	private final CartRepository cartRepository;
-	private final CartItemService cartItemService;
 
-	public CartServiceImpl(CartRepository cartRepository, CartItemService cartItemService) {
+	public CartServiceImpl(CartRepository cartRepository) {
 		this.cartRepository = cartRepository;
-		this.cartItemService = cartItemService;
 	}
 
 	public Cart getCartByCartId(Long cartId) {
@@ -19,7 +17,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void addNewCart(Cart cart) {
+	public void save(Cart cart) {
 		cartRepository.save(cart);
 	}
 

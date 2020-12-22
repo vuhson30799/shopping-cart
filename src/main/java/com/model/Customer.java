@@ -1,10 +1,14 @@
 package com.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.utils.CartState;
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -39,8 +43,15 @@ public class Customer implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User userInfo;
 
-	@OneToOne
-	@JoinColumn(name = "cart_id")
+	@OneToMany(mappedBy = "customer")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
-	private Cart cart;
+	private List<Cart> carts;
+
+	public Cart getAvailableCart() {
+		return carts.stream()
+				.filter(cart -> CartState.AVAILABLE.name().equals(cart.getStatus()))
+				.findFirst()
+				.orElseThrow();
+	}
 }
