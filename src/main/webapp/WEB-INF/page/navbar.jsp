@@ -47,7 +47,7 @@
 				<!-- 			Only admin can view this link -->
 				<security:authorize access="hasRole('ADMIN')">
 					<li><a href=" <c:url value="/admin/product/addProduct" />">Add Product</a></li>
-					<li><a href=" <c:url value="/order/status" />">Order Status</a></li>
+					<li><a href=" <c:url value="/cart/orders" />">Orders</a></li>
 				</security:authorize>
 				<li><a href=" <c:url value="/aboutus" />">About Us</a></li>
 			</ul>

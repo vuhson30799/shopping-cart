@@ -1,20 +1,13 @@
 package com.controller;
 
 import com.dto.CustomerOrderDTO;
-import com.exception.ApplicationException;
-import com.model.Customer;
 import com.model.CustomerOrder;
 import com.service.CustomerOrderService;
-import com.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 public class OrderController {
@@ -63,6 +56,12 @@ public class OrderController {
 	public ResponseEntity<String> submitOrder(@PathVariable("customerOrderId") Long customerOrderId) {
 		customerOrderService.submitCustomerOrder(customerOrderId);
 		return new ResponseEntity<>("/checkout/thankCustomer", HttpStatus.OK);
+	}
+
+	@PutMapping("/order/transfer/{cartId}")
+	public ResponseEntity<String> transferOrder(@PathVariable("cartId") Long cartId) {
+		customerOrderService.transferCustomerOrder(cartId);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/order/finish/{cartId}")

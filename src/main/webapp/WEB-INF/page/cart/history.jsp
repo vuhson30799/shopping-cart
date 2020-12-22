@@ -20,7 +20,7 @@
     <script src="<c:url value="/resource/js/productController.js"/>"
             type="text/javascript"></script>
 </head>
-<body style="padding: 0;">
+<body style="padding: 0;" ng-app="myapp">
 <div class="container" style="margin-bottom: 19px">
     <div style="text-align: center;"><h1 class="well">Order History!</h1></div>
 
@@ -28,7 +28,20 @@
          id="productTable"
          style="width: 1145px; margin-bottom: 180px;">
         <c:forEach items="${carts}" var="cart">
-            <div style="text-align: center;"><h3 class="well">Order: ${cart.cartId}</h3></div>
+            <div style="text-align: center;" ng-controller="myController" class="well">
+                <h3>
+                    Order: ${cart.cartId}
+                    <c:if test="${cart.status.equals('TRANSFERRED')}">
+                        <security:authorize access="hasAnyRole('USER')">
+                            <a href="#" ng-click="confirmOrder(${cart.cartId})"
+                               class="btn btn-primary"
+                               style="margin-left: 5px; margin-top: -6px;">
+                                <span class="glyphicon glyphicon-saved"></span>
+                            </a>
+                        </security:authorize>
+                    </c:if>
+                </h3>
+            </div>
             <table class="table table-hover" id="productList">
                 <thead>
                 <tr>
@@ -39,10 +52,6 @@
                     <th>Stock Unit</th>
                     <th>Description</th>
                     <th>Manufacturer</th>
-                    <th>View <security:authorize access="hasAnyRole('USER')">
-                        / Received
-                    </security:authorize>
-                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,16 +66,6 @@
                         <td>${cartItem.product.unitStock}</td>
                         <td style="width: 180px">${cartItem.product.productDescription}</td>
                         <td>${cartItem.product.productManufacturer}</td>
-                        <td ng-controller="myController"><a
-                                href="getProductById/${cartItem.product.productId}" class="btn btn-info"
-                                role="button"> <span class="glyphicon glyphicon-info-sign"></span></a>
-                            <c:if test="${cart.status.equals('TRANSFERRED')}">
-                                <security:authorize access="hasAnyRole('USER')">
-                                    <a href="#" ng-click="confirmOrder(${cart.cartId})"
-                                       class="btn btn-primary" style="margin-left: 5px"> <span
-                                            class="glyphicon glyphicon-saved"></span></a>
-                                </security:authorize>
-                            </c:if></td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -29,5 +29,10 @@ public class CartServiceImpl implements CartService {
 		return cartRepository.findAllByCustomer(customer);
 	}
 
+	@Override
+	public List<Cart> findAll() {
+		return cartRepository.findAll();
+	}
+
 
 }

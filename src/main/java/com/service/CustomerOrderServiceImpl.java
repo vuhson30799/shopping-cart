@@ -84,6 +84,13 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	}
 
 	@Override
+	public void transferCustomerOrder(Long cartId) {
+		CustomerOrder customerOrder = getCustomerOrderByCart(cartId);
+		customerOrder.getCart().setStatus(CartState.TRANSFERRED.name());
+		cartService.save(customerOrder.getCart());
+	}
+
+	@Override
 	public void finishCustomerOrder(Long cartId) {
 		CustomerOrder customerOrder = getCustomerOrderByCart(cartId);
 		customerOrder.getCart().setStatus(CartState.DONE.name());

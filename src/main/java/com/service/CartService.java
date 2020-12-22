@@ -9,4 +9,5 @@ public interface CartService {
 	Cart getCartByCartId(Long cartId);
 	void save(Cart cart);
 	List<Cart> findAllCustomerOrderByCustomer(Customer customer);
+	List<Cart> findAll();
 }

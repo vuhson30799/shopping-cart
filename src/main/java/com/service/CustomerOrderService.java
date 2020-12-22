@@ -10,6 +10,7 @@ public interface CustomerOrderService {
 	void cancelCustomerOrder(Long cartId);
 	void collectCustomerInfo(CustomerOrderDTO customerOrderDTO);
 	void submitCustomerOrder(Long customerOrderId);
+	void transferCustomerOrder(Long cartId);
 	void finishCustomerOrder(Long cartId);
 	double getCustomerOrderGrandTotal(Long cartId);
 }
