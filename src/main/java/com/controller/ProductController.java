@@ -24,12 +24,16 @@ public class ProductController {
     @GetMapping("/getAllProducts")
     public ModelAndView getAllProducts() {
         List<Product> products = productService.getAllProducts();
+        for(Product p:products){
+            p.setProductDescription(p.getProductDescription().replace('|','\n'));
+        }
         return new ModelAndView("productList", "products", products);
     }
 
     @GetMapping("getProductById/{productId}")
     public ModelAndView getProductById(@PathVariable(value = "productId") Long productId) {
         Product product = productService.getProductById(productId);
+        product.setProductDescription(product.getProductDescription().replace('|','\n'));
         return new ModelAndView("productPage", "productObj", product);
     }
 
@@ -53,6 +57,9 @@ public class ProductController {
         if (result.hasErrors()) {
             return "addProduct";
         }
+        String description=product.getProductDescription();
+        description=description.replace('\n','|');
+        product.setProductDescription(description);
         productService.addProduct(product);
         return REDIRECT_URL;
     }
@@ -65,6 +72,7 @@ public class ProductController {
 
     @PostMapping("/admin/product/editProduct")
     public String editProduct(@ModelAttribute(value = "editProductObj") Product product) {
+        product.setProductDescription(product.getProductDescription().replace('\n','|'));
         productService.editProduct(product);
         return REDIRECT_URL;
     }

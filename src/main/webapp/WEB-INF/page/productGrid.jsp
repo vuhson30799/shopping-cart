@@ -1,9 +1,12 @@
 <%@ page pageEncoding="UTF-8"
 		 contentType="text/html; charset=UTF-8"
 		 isELIgnored="false"%>
+<%@ page import="com.model.Product" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
+<%! List<Product> products; %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -24,117 +27,35 @@ body, h1, h2, h3, h4, h5 {
 </style>
 </head>
 <body>
+
+	<%
+		products = (List<Product>) request.getAttribute("products");
+		int noOfRows = (int)Math.ceil(products.size()/3.0);
+		for(int i=0;i<noOfRows;i++){
+	%>
+	<div class="w3-row-padding" style="padding:0px 30px; margin-bottom: 20px">
+		<%
+			for(int j=i*3;j<Math.min(products.size(),i*3+3);j++){
+				String[] description = products.get(j).getProductDescription().split("\\|");
+		%>
+		<div class="w3-third w3-container w3-margin-bottom">
+			<a href="/getProductById/<%=products.get(j).getProductId()%>">
+				<img src="/resource/images/products/<%=products.get(j).getImage()%>" alt="Norway" style="width: 100%"
+					 class="w3-hover-opacity"></a>
+			<div class="w3-container w3-white">
+				<p>
+					<b><%=products.get(j).getProductName()%></b>
+				</p>
+				<ul>
+					<%for(String des:description){ %>
+					<li><%=des%></li>
+					<%}%>
+				</ul>
+			</div>
+		</div>
+		<%}%>
+	</div>
 	<hr>
-	<div class="w3-row-padding" style="padding:0px 30px; margin-bottom: 20px">
-		<div class="w3-third w3-container w3-margin-bottom">
-			<img src="<c:url value="/resource/images/products/two.jpg"/>" alt="Norway" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>Oppo A37</b>
-				</p>
-				<p>
-					<ul>
-						<li>Technology - GSM/HSPA/LTE</li>
-						<li>Resolution - 720x1280 pixels</li>
-						<li>OS - Android OS, v5.1(Lollipop)</li>
-						<li>Price - 10,000.00</li>
-					</ul>
-				</p>
-			</div>
-		</div>
-		
-		<div class="w3-third w3-container w3-margin-bottom">
-			<img src="<c:url value="/resource/images/products/seven.jpg"/>" alt="Norway" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>Oppo A53</b>
-				</p>
-				<p>
-					<ul>
-						<li>Technology - GSM/HSPA/LTE</li>
-						<li>Resolution - 720x1280 pixels</li>
-						<li>OS - Android OS, v5.1(Lollipop)</li>
-						<li>Price - 8,000.00</li>
-					</ul>
-				</p>
-			</div>
-		</div>
-		<div class="w3-third w3-container w3-margin-bottom">
-			<img src="<c:url value="/resource/images/products/five.jpg"/>" alt="Norway" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>Oppo F1s</b>
-				</p>
-				<p>
-					<ul>
-						<li>Technology - GSM/HSPA/LTE</li>
-						<li>Resolution - 720x1280 pixels</li>
-						<li>OS - Android OS, v5.1(Lollipop)</li>
-						<li>Price - 18,000.00</li>
-					</ul>
-				</p>
-			</div>
-		</div>
-	</div>
-	
-		<hr>
-	<div class="w3-row-padding" style="padding:0px 30px; margin-bottom: 20px">
-		<div class="w3-third w3-container w3-margin-bottom">
-			<img src="<c:url value="/resource/images/products/five.jpg"/>" alt="Norway" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>Oppo F1s</b>
-				</p>
-				<p>
-					<ul>
-						<li>Technology - GSM/HSPA/LTE</li>
-						<li>Resolution - 720x1280 pixels</li>
-						<li>OS - Android OS, v5.1(Lollipop)</li>
-						<li>Price - 18,000.00</li>
-					</ul>
-				</p>
-			</div>
-		</div>
-		
-		<div class="w3-third w3-container w3-margin-bottom">
-			<img src="<c:url value="/resource/images/products/1.jpg"/>" alt="Norway" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>Oppo A53</b>
-				</p>
-				<p>
-					<ul>
-						<li>Technology - GSM/HSPA/LTE</li>
-						<li>Resolution - 720x1280 pixels</li>
-						<li>OS - Android OS, v5.1(Lollipop)</li>
-						<li>Price - 8,000.00</li>
-					</ul>
-				</p>
-			</div>
-		</div>
-		<div class="w3-third w3-container w3-margin-bottom">
-			<img src="<c:url value="/resource/images/products/4.jpg"/>" alt="Norway" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>Oppo A37</b>
-				</p>
-				<p>
-					<ul>
-						<li>Technology - GSM/HSPA/LTE</li>
-						<li>Resolution - 720x1280 pixels</li>
-						<li>OS - Android OS, v5.1(Lollipop)</li>
-						<li>Price - 10,000.00</li>
-					</ul>
-				</p>
-				
-			</div>
-		</div>
-	</div>
+	<%}%>
 </body>
 </html>
