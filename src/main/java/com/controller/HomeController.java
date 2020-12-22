@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Queries;
@@ -22,19 +19,22 @@ import java.util.List;
 @Controller
 public class HomeController {
 	private final ProductService productService;
+	private final QueriesService queryService;
 
-	public HomeController(ProductService productService) {
+	public HomeController(ProductService productService, QueriesService queryService) {
 		this.productService = productService;
+		this.queryService = queryService;
 	}
 
-	@RequestMapping({ "/index", "/home" })
+
+	@GetMapping({ "/", "/home" })
 	public String home(Model model) {
 		List<Product> products = productService.getAllProducts();
-		model.addAttribute("products",products);
+		model.addAttribute("products", products);
 		return "home";
 	}
 
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Model model) {
 		if (error != null)
@@ -44,21 +44,18 @@ public class HomeController {
 		return "login";
 	}
 
-	@RequestMapping("/aboutus")
+	@GetMapping("/aboutus")
 	public String sayAbout() {
 		return "aboutUs";
 	}
 
-	@Autowired
-	private QueriesService queryService;
-
-	@RequestMapping(value = "/contactus")
+	@GetMapping(value = "/contactus")
 	public ModelAndView getQuery() {
 		Queries query = new Queries();
 		return new ModelAndView("contactUs", "contact", query);
 	}
 
-	@RequestMapping(value = "/contactus", method = RequestMethod.POST)
+	@PostMapping(value = "/contactus")
 	public String addQuery(@Valid @ModelAttribute(value = "contact") Queries query, Model model, BindingResult result) {
 
 		if (result.hasErrors())
