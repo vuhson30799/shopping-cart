@@ -1,14 +1,15 @@
-<%@ page pageEncoding="UTF-8"
-		 contentType="text/html; charset=UTF-8"
-		 isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ page isELIgnored="false"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact Us</title>
-<link rel="icon" type="image/x-icon" href="/resource/images/favicon1.png" />
+<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
 <!-- CSS -->
 <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -18,19 +19,19 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <link rel="stylesheet"
-	href="/resource/css/form-elements.css">
-<link rel="stylesheet" href="/resource/css/style.css">
+	href="<c:url value="/resource/css/form-elements.css"/>">
+<link rel="stylesheet" href="<c:url value="/resource/css/style.css"/>">
 
 <!--  JavaScript -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/resource/js/retina-1.1.0.min.js"></script>
-<script src="/resource/js/scripts.js"></script>
+<script src="<c:url value="/resource/js/retina-1.1.0.min.js"/>"></script>
+<script src="<c:url value="/resource/js/scripts.js"/>"></script>
 <style>
 body {
-	background-image: url("/resource/images/1.jpg");
+	background-image: url("<c:url value="/ resource/ images/ 1.jpg "/>");
 }
 </style>
 
@@ -81,7 +82,7 @@ body {
 							</div>
 							<button type="submit" class="btn">Send message</button>
 							<button style="float: right;" type="button" class="btn"
-								onclick="window.location.href='<c:url value="/home" />'">Back
+								onclick="window.location.href='<c:url value="/index1" />'">Back
 								to Home</button>
 						</form:form>
 					</div>

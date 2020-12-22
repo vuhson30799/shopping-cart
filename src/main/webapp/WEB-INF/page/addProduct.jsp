@@ -35,7 +35,7 @@
                             <form:label path="productName">Product Name</form:label>
                             <form:input type="text"
                                         placeholder="Enter Product Name.." class="form-control"
-                                        path="productName"/>
+                                        path="productName" id="productName"/>
                             <form:errors path="productName"/>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                         <form:label path="productDescription">Product Description</form:label>
                         <form:textarea type="text"
                                        placeholder="Enter Product Description.." class="form-control"
-                                       path="productDescription"/>
+                                       path="productDescription" id="productDes"/>
                     </div>
                     <div class="form-group">
                         <form:label path="productCategory">Product Category</form:label>
@@ -57,20 +57,20 @@
                             <form:label path="productManufacturer">Product Manufacturer</form:label>
                             <form:input type="text"
                                         placeholder="Enter Product Manufacurer.." class="form-control"
-                                        path="productManufacturer"/>
+                                        path="productManufacturer" id="productManu"/>
                         </div>
                         <div class="col-sm-4 form-group">
                             <form:label path="productPrice">Product Price</form:label>
                             <form:input type="text"
                                         placeholder="Enter Product Price.." class="form-control"
-                                        path="productPrice"/>
+                                        path="productPrice" id="productPrice"/>
                             <form:errors path="productPrice"/>
                         </div>
                         <div class="col-sm-4 form-group">
                             <form:label path="unitStock">Number of Products</form:label>
                             <form:input type="text"
                                         placeholder="Number of Products.." class="form-control"
-                                        path="unitStock"/>
+                                        path="unitStock" id="numberProduct"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,7 +78,7 @@
                         <form:input type="file" path="productImage"/>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-lg btn-info">Submit</button>
+                        <button type="submit" class="btn btn-lg btn-info" onclick="return(validate())">Submit</button>
                     </div>
                 </div>
             </form:form>
@@ -86,5 +86,41 @@
     </div>
 </div>
 <%@ include file="footer.jsp" %>
+
+<script type="text/javascript">
+    function validate() {
+        var productName = document.getElementById("productName").value;
+        var productDes = document.getElementById("productDes").value;
+        var productManu = document.getElementById("productManu").value;
+        var productPrice = document.getElementById("productPrice").value;
+        var numberProduct = document.getElementById("numberProduct").value;
+
+        var productsKeys = [productName, productDes, productManu, productPrice, numberProduct];
+        var productValues = ["Product Name", "Product Description", "Product Manufacturer", "Product Price", "Number of Product"];
+
+        for(var i=0; i < productsKeys.length;i++) {
+            if(productsKeys[i] == null || productsKeys[i] == "") {
+                alert(productValues[i] + " is not null!")
+                return false;
+            }
+        }
+
+        if(!validateNumber(productPrice)) {
+            alert("Product Price is not valid!")
+            return false;
+        }
+
+        if(!validateNumber(numberProduct)) {
+            alert("Number of Product is not valid")
+            return false;
+        }
+
+        return true;
+    }
+    function validateNumber(number) {
+        const re = /^[0-9]*$/;
+        return re.test(number);
+    }
+</script>
 </body>
 </html>

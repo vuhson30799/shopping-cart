@@ -6,34 +6,19 @@
 <html>
 <head>
 <title>Login</title>
-<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
-<link rel="stylesheet" href="bootstrap/css/custom.css">
-<script src="js/jquery-3.1.0.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/header.css">
-<style type="text/css">
-@media ( min-width : 1200px) .container {
-	width
-	:
-		
-	1300
-	px
-		
-	;
-}
-
-@media ( min-width : 992px) .col-md-4 {
-	margin-left
-		
-	:
-	330px
-		
-	;
-}
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="icon" type="image/x-icon" href="<c:url value="../resource/images/favicon1.png"/>" />
+	<link rel="stylesheet" href="bootstrap/css/custom.css">
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<style type="text/css">
 </style>
 </head>
 <body>
-	<%@ include file="navbar.jsp"%>
+	<%@ include file="navbar.jsp" %>
 	<div class="container" style="margin-top: 30px; margin-bottom: 180px;">
 		<div class="col-md-4">
 			<div class="login-panel panel panel-default">
@@ -90,7 +75,6 @@
 		</div>
 
 	</div>
-	<%@ include file="footer.jsp"%>
 
 </body>
 </html>
