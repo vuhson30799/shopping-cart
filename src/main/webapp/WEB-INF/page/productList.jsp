@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8"
          contentType="text/html; charset=UTF-8"
          isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="navbar.jsp" %>
 <html>
@@ -56,7 +57,12 @@
                 <td>${prod.productName}</td>
                 <td class="price">${prod.productPrice}</td>
                 <td>${prod.unitStock}</td>
-                <td style="width: 180px">${prod.productDescription}</td>
+                <td style="width: 180px">
+                    <c:set var="descriptions" value="${fn:split(prod.productDescription, '|')}"/>
+                    <c:forEach items="${descriptions}" var="description">
+                        <p>${description}</p>
+                    </c:forEach>
+                </td>
                 <td>${prod.productManufacturer}</td>
                 <td ng-controller="myController"><a
                         href="getProductById/${prod.productId}" class="btn btn-info"

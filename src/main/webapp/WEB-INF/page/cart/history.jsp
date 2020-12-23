@@ -2,6 +2,7 @@
          contentType="text/html; charset=UTF-8"
          isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../navbar.jsp" %>
 <html>
@@ -67,7 +68,12 @@
                         <td>${cartItem.product.productName}</td>
                         <td class="price">${cartItem.product.productPrice}</td>
                         <td>${cartItem.product.unitStock}</td>
-                        <td style="width: 180px">${cartItem.product.productDescription}</td>
+                        <td style="width: 180px">
+                            <c:set var="descriptions" value="${fn:split(cartItem.product.productDescription, '|')}"/>
+                            <c:forEach items="${descriptions}" var="description">
+                                <p>${description}</p>
+                            </c:forEach>
+                        </td>
                         <td>${cartItem.product.productManufacturer}</td>
                     </tr>
                 </c:forEach>

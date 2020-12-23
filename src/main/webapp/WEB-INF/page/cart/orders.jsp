@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8"
          contentType="text/html; charset=UTF-8"
          isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../navbar.jsp" %>
 <html>
@@ -67,7 +68,12 @@
                         <td>${cartItem.product.productName}</td>
                         <td>${cartItem.product.productPrice}</td>
                         <td>${cartItem.product.unitStock}</td>
-                        <td style="width: 180px">${cartItem.product.productDescription}</td>
+                        <td style="width: 180px">
+                            <c:set var="descriptions" value="${fn:split(cartItem.product.productDescription, '|')}"/>
+                            <c:forEach items="${descriptions}" var="description">
+                                <p>${description}</p>
+                            </c:forEach>
+                        </td>
                         <td>${cartItem.product.productManufacturer}</td>
                         <c:if test="${status.index == 0}">
                             <td rowspan="${cart.cartItem.size()}">
@@ -152,17 +158,18 @@
     </div>
 </div>
 <script>
-    function f(){
-        var x=document.getElementsByClassName("price");
-        for(var i=0;i<x.length;i++){
-            if(x[i].innerHTML.indexOf("E")>0){
-                var y=x[i].innerHTML.split("E");
-                var price=y[0]*10**y[1];
-                x[i].innerHTML=price.toString()+" VND";
+    function f() {
+        var x = document.getElementsByClassName("price");
+        for (var i = 0; i < x.length; i++) {
+            if (x[i].innerHTML.indexOf("E") > 0) {
+                var y = x[i].innerHTML.split("E");
+                var price = y[0] * 10 ** y[1];
+                x[i].innerHTML = price.toString() + " VND";
             }
         }
     }
-    document.getElementsByTagName("body").item(0).onload=f;
+
+    document.getElementsByTagName("body").item(0).onload = f;
 </script>
 </body>
 </html>

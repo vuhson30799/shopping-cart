@@ -31,7 +31,6 @@ public class ProductController {
     @GetMapping("getProductById/{productId}")
     public ModelAndView getProductById(@PathVariable(value = "productId") Long productId) {
         Product product = productService.getProductById(productId);
-        product.setProductDescription(product.getProductDescription().replace('|','\n'));
         return new ModelAndView("productPage", "productObj", product);
     }
 

@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8"
          contentType="text/html; charset=UTF-8"
          isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security"
            uri="http://www.springframework.org/security/tags" %>
@@ -43,7 +44,12 @@
             </tr>
             <tr>
                 <td>Product Description</td>
-                <td>${productObj.productDescription}</td>
+                <td>
+                    <c:set var="descriptions" value="${fn:split(productObj.productDescription, '|')}"/>
+                    <c:forEach items="${descriptions}" var="description">
+                        <p>${description}</p>
+                    </c:forEach>
+                </td>
             </tr>
             <tr>
                 <td>Product Manufacturer</td>
