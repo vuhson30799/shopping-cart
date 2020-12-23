@@ -3,6 +3,7 @@ package com.controller;
 
 import com.model.Product;
 import com.service.ProductService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,11 +23,8 @@ public class ProductController {
     }
 
     @GetMapping("/getAllProducts")
-    public ModelAndView getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        for(Product p:products){
-            p.setProductDescription(p.getProductDescription().replace('|','\n'));
-        }
+    public ModelAndView getAllProducts(@RequestParam(name = "page", defaultValue = "0")Integer page) {
+        Page<Product> products = productService.getAllProducts(page, 5);
         return new ModelAndView("productList", "products", products);
     }
 
