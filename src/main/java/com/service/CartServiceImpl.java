@@ -3,6 +3,9 @@ package com.service;
 import com.model.Cart;
 import com.model.Customer;
 import com.repository.CartRepository;
+import com.utils.CartState;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +30,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<Cart> findAllCustomerOrderByCustomer(Customer customer) {
 		return cartRepository.findAllByCustomer(customer);
+	}
+
+	@Override
+	public Page<Cart> getAllCustomerOrderByCustomer(Customer customer, Pageable pageable) {
+		return cartRepository.findByCustomerAndStatusIsNot(customer, CartState.AVAILABLE.name(), pageable);
 	}
 
 	@Override

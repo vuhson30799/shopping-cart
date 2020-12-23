@@ -2,16 +2,18 @@ package com.controller;
 
 import com.model.Cart;
 import com.model.Customer;
-import com.model.CustomerOrder;
 import com.service.CartService;
 import com.service.CustomerService;
 import com.utils.CartState;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,12 +56,10 @@ public class CartController {
 	}
 
 	@GetMapping("/cart/history")
-	public ModelAndView history() {
+	public ModelAndView history(@RequestParam(value = "page", defaultValue = "0")Integer page) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String emailId = user.getUsername();
-		List<Cart> carts = cartService.findAllCustomerOrderByCustomer(customerService.getCustomerByEmailId(emailId)).stream()
-				.filter(cart -> !CartState.AVAILABLE.name().equals(cart.getStatus()))
-				.collect(Collectors.toList());
+		Page<Cart> carts = cartService.getAllCustomerOrderByCustomer(customerService.getCustomerByEmailId(emailId), PageRequest.of(page, 3));
 		return new ModelAndView("cart/history", "carts", carts);
 	}
 
