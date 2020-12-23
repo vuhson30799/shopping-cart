@@ -68,8 +68,8 @@
                                     <tr>
                                         <td style="text-align: center"><em>${cartItem.product.productName}</em></td>
                                         <td style="text-align: center">${cartItem.quality}</td>
-                                        <td style="text-align: center">${cartItem.product.productPrice}</td>
-                                        <td style="text-align: center">${cartItem.price}</td>
+                                        <td style="text-align: center" class="price">${cartItem.product.productPrice}</td>
+                                        <td style="text-align: center" class="total">${cartItem.price}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -77,7 +77,7 @@
                         </div>
                         <div>
                             <h4><strong>Grand Total: </strong> <strong
-                                    class="text-danger">...</strong></h4>
+                                    class="text-danger"></strong></h4>
                         </div>
 
                     </div>
@@ -103,7 +103,31 @@
         </div>
     </div>
 </div>
-
+<script>
+    function f(){
+        var x=document.getElementsByClassName("price");
+        var t=document.getElementsByClassName("total");
+        var sum=0;
+        for(var i=0;i<x.length;i++){
+            if(x[i].innerHTML.indexOf("E")>0){
+                var y=x[i].innerHTML.split("E");
+                var price=y[0]*10**y[1];
+                x[i].innerHTML=price.toString();
+            }
+        }
+        for(var i=0;i<t.length;i++){
+            if(t[i].innerHTML.indexOf("E")>0){
+                var y=t[i].innerHTML.split("E");
+                var price=y[0]*10**y[1];
+                t[i].innerHTML=price.toString();
+                sum+=price;
+            }
+            else sum+=t[i].innerHTML;
+        }
+        document.getElementsByClassName("text-danger").item(0).innerHTML=sum;
+    }
+    document.getElementsByTagName("body").item(0).onload=f;
+</script>
 </body>
 </html>
 

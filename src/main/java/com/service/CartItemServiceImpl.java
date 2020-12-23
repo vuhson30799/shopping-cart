@@ -44,7 +44,7 @@ public class CartItemServiceImpl implements CartItemService {
 		if (optionalCartItem.isPresent()) {
 			CartItem oldCartItem = optionalCartItem.get();
 			oldCartItem.setQuality(oldCartItem.getQuality() + cartItem.getQuality());
-			oldCartItem.setPrice(oldCartItem.getPrice() * oldCartItem.getQuality());
+			oldCartItem.setPrice(oldCartItem.getPrice() + cartItem.getPrice());
 			cartItemRepository.save(oldCartItem);
 		} else {
 			cartItemRepository.save(cartItem);

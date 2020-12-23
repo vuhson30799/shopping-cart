@@ -2,6 +2,7 @@
 		 contentType="text/html; charset=UTF-8"
 		 isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <html>
@@ -55,8 +56,10 @@
 			<ul class="nav navbar-nav navbar-right">
 
 				<c:if test="${!empty pageContext.request.userPrincipal.name}">
-					<li><a href="<c:url value="/home" />"><span
-							class="glyphicon glyphicon-shopping-user"></span>Welcome ${pageContext.request.userPrincipal.name}</a></li>
+					<li><a href="<c:url value="/home" /> " ><span
+							class="glyphicon glyphicon-shopping-user"></span>
+						<c:set value="${fn:split(pageContext.request.userPrincipal.name,'@')[0]}" var="userName"/>
+                        <span id="userName">Welcome ${userName}</span></a></li>
 
 					<security:authorize access="hasRole('USER')">
 						<li><a href="<c:url value="/cart/getCartById" />"><span
@@ -82,8 +85,6 @@
 		</div>
 	</div>
 	</nav>
-
-
 
 </body>
 </html>

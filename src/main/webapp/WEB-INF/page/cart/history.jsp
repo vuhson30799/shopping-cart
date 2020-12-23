@@ -62,7 +62,7 @@
                                 style="width: 100px; height: 90px;" alt="${cartItem.product.productName}"/></td>
                         <td>${cartItem.product.productCategory}</td>
                         <td>${cartItem.product.productName}</td>
-                        <td>${cartItem.product.productPrice}</td>
+                        <td class="price">${cartItem.product.productPrice}</td>
                         <td>${cartItem.product.unitStock}</td>
                         <td style="width: 180px">${cartItem.product.productDescription}</td>
                         <td>${cartItem.product.productManufacturer}</td>
@@ -74,6 +74,19 @@
     </div>
 
 </div>
+<script>
+    function f(){
+        var x=document.getElementsByClassName("price");
+        for(var i=0;i<x.length;i++){
+            if(x[i].innerHTML.indexOf("E")>0){
+                var y=x[i].innerHTML.split("E");
+                var price=y[0]*10**y[1];
+                x[i].innerHTML=price.toString()+" VND";
+            }
+        }
+    }
+    document.getElementsByTagName("body").item(0).onload=f;
+</script>
 </body>
 </html>
 <%@ include file="../footer.jsp" %>

@@ -87,5 +87,16 @@
     </div>
 </div>
 <%@ include file="footer.jsp" %>
+<script>
+    function f(){
+        var x=document.querySelector("div[class=col-sm-12]").children[3].children[1].children[1];
+        if(x.value.indexOf("E")>0){
+            var y=x.value.split("E");
+            var price=y[0]*10**y[1];
+            x.value=price.toString();
+        }
+    }
+    document.getElementsByTagName("body").item(0).onload=f;
+</script>
 </body>
 </html>
