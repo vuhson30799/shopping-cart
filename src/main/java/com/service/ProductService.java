@@ -3,10 +3,13 @@ package com.service;
 import java.util.List;
 
 import com.model.Product;
+import org.springframework.data.domain.Page;
 
 public interface ProductService {
 
-	public List<Product> getAllProducts();
+	List<Product> getAllProducts();
+
+	Page<Product> getAllProducts(int page, int size);
 
 	Product getProductById(Long productId);
 

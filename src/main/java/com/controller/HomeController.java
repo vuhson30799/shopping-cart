@@ -1,19 +1,20 @@
 package com.controller;
 
-import javax.validation.Valid;
-
 import com.model.Product;
+import com.model.Queries;
 import com.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.service.QueriesService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.model.Queries;
-import com.service.QueriesService;
-
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,8 +29,9 @@ public class HomeController {
 
 
 	@GetMapping({ "/", "/home" })
-	public String home(Model model) {
-		List<Product> products = productService.getAllProducts();
+	public String home(@RequestParam(name = "page", defaultValue = "0")Integer page,
+					   Model model) {
+		Page<Product> products = productService.getAllProducts(page, 9);
 		model.addAttribute("products", products);
 		return "home";
 	}

@@ -24,7 +24,7 @@
 		<div class="nav navbar">
 			<img class="navbar-brand"
 				src="/resource/images/shopieasy-logo.png"
-				href="<c:url value="/index"/>" width="200px" height="100px"
+				href="<c:url value="/home"/>" width="200px" height="100px"
 				alt="logo-image"/>
 		</div>
 
