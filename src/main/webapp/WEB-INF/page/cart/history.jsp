@@ -31,6 +31,9 @@
             <div style="text-align: center;" ng-controller="myController" class="well">
                 <h3>
                     Order: ${cart.cartId}
+                </h3>
+                <div style="text-align: center;">
+                    Status: ${cart.status}
                     <c:if test="${cart.status.equals('TRANSFERRED')}">
                         <security:authorize access="hasAnyRole('USER')">
                             <a href="#" ng-click="confirmOrder(${cart.cartId})"
@@ -40,7 +43,7 @@
                             </a>
                         </security:authorize>
                     </c:if>
-                </h3>
+                </div>
             </div>
             <table class="table table-hover" id="productList">
                 <thead>

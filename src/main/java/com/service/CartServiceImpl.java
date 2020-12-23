@@ -42,5 +42,10 @@ public class CartServiceImpl implements CartService {
 		return cartRepository.findAll();
 	}
 
+	@Override
+	public Page<Cart> findAllByStatusIsNot(String status, Pageable pageable) {
+		return cartRepository.findAllByStatusIsNot(status, pageable);
+	}
+
 
 }

@@ -13,4 +13,5 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Long> {
     List<Cart> findAllByCustomer(Customer customer);
     Page<Cart> findByCustomerAndStatusIsNot(Customer customer, String status, Pageable pageable);
+    Page<Cart> findAllByStatusIsNot(String status, Pageable pageable);
 }

@@ -71,10 +71,4 @@ var app = angular.module("myapp", []).controller(
                 $(location)[0].href = 'http://localhost:8080/home?errorMessage=' + 'Technical Error'
             })
         }
-
-        $scope.refreshOrder = function () {
-        	$http.get(BASE_PATH + "/cart/getNonAvailable").success(function (data) {
-				$scope.carts = data
-			})
-		}
     });

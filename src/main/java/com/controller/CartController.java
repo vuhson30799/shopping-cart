@@ -47,14 +47,6 @@ public class CartController {
 		return cartService.getCartByCartId(cartId);
 	}
 
-	@GetMapping("/cart/getNonAvailable")
-	public @ResponseBody List<Cart> getNonAvailableCarts(){
-		return cartService.findAll()
-				.stream()
-				.filter(cart -> !CartState.AVAILABLE.name().equals(cart.getStatus()))
-				.collect(Collectors.toList());
-	}
-
 	@GetMapping("/cart/history")
 	public ModelAndView history(@RequestParam(value = "page", defaultValue = "0")Integer page) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -64,11 +56,8 @@ public class CartController {
 	}
 
 	@GetMapping("/cart/orders")
-	public ModelAndView status() {
-		List<Cart> carts = cartService.findAll()
-				.stream()
-				.filter(cart -> !CartState.AVAILABLE.name().equals(cart.getStatus()))
-				.collect(Collectors.toList());
+	public ModelAndView status(@RequestParam(name = "page", defaultValue = "0")Integer page) {
+		Page<Cart> carts = cartService.findAllByStatusIsNot(CartState.AVAILABLE.name(), PageRequest.of(page, 3));
 		return new ModelAndView("cart/orders", "carts", carts);
 	}
 }

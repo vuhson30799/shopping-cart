@@ -13,4 +13,5 @@ public interface CartService {
 	List<Cart> findAllCustomerOrderByCustomer(Customer customer);
 	Page<Cart> getAllCustomerOrderByCustomer(Customer customer, Pageable pageable);
 	List<Cart> findAll();
+	Page<Cart> findAllByStatusIsNot(String status, Pageable pageable);
 }
