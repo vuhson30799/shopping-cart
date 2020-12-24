@@ -82,42 +82,44 @@
         </c:forEach>
         <c:set var="pageable" value="${carts.pageable}"/>
         <c:set var="totalPages" value="${carts.totalPages}"/>
-        <div style="display: flex; justify-content: center">
-            <ul class="pagination">
-                <c:if test="${pageable.pageNumber <= 0}" var="disablePrevious"/>
-                <li class="page-item <c:if test="${disablePrevious}">disabled</c:if>">
-                    <a class="page-link"
-                       href="<c:url value="/cart/history?page=${disablePrevious ? pageable.pageNumber - 1 : 0}"/>">Previous
-                    </a>
-                </li>
-                <c:choose>
-                    <c:when test="${pageable.pageNumber >= 0 && pageable.pageNumber < totalPages - 1}">
-                        <c:forEach begin="${pageable.pageNumber}" end="${pageable.pageNumber + 1}" var="index">
-                            <c:if test="${pageable.pageNumber == index}" var="active"/>
-                            <li class="page-item <c:if test="${active}">active</c:if>">
-                                <a class="page-link" href="<c:url value="/cart/history?page=${index}"/>">${index + 1}</a>
-                            </li>
-                        </c:forEach>
-                    </c:when>
-                    <c:when test="${pageable.pageNumber >= totalPages - 1}">
-                        <c:forEach begin="${totalPages - 2}" end="${totalPages - 1}" var="index">
-                            <c:if test="${pageable.pageNumber == index}" var="active"/>
-                            <li class="page-item <c:if test="${active}">active</c:if>">
+        <c:if test="${totalPages > 1}">
+            <div style="display: flex; justify-content: center">
+                <ul class="pagination">
+                    <c:if test="${pageable.pageNumber <= 0}" var="disablePrevious"/>
+                    <li class="page-item <c:if test="${disablePrevious}">disabled</c:if>">
+                        <a class="page-link"
+                           href="<c:url value="/cart/history?page=${disablePrevious ? pageable.pageNumber - 1 : 0}"/>">Previous
+                        </a>
+                    </li>
+                    <c:choose>
+                        <c:when test="${pageable.pageNumber >= 0 && pageable.pageNumber < totalPages - 1}">
+                            <c:forEach begin="${pageable.pageNumber}" end="${pageable.pageNumber + 1}" var="index">
+                                <c:if test="${pageable.pageNumber == index}" var="active"/>
+                                <li class="page-item <c:if test="${active}">active</c:if>">
+                                    <a class="page-link" href="<c:url value="/cart/history?page=${index}"/>">${index + 1}</a>
+                                </li>
+                            </c:forEach>
+                        </c:when>
+                        <c:when test="${pageable.pageNumber >= totalPages - 1}">
+                            <c:forEach begin="${totalPages - 2}" end="${totalPages - 1}" var="index">
+                                <c:if test="${pageable.pageNumber == index}" var="active"/>
+                                <li class="page-item <c:if test="${active}">active</c:if>">
 
-                                <a class="page-link" href="<c:url value="/cart/history?page=${index}"/>">${index + 1}</a>
-                            </li>
-                        </c:forEach>
-                    </c:when>
-                </c:choose>
-                <c:if test="${pageable.pageNumber >= totalPages - 1}" var="disableNext"/>
-                <li class="page-item <c:if test="${disableNext}">disabled</c:if>">
+                                    <a class="page-link" href="<c:url value="/cart/history?page=${index}"/>">${index + 1}</a>
+                                </li>
+                            </c:forEach>
+                        </c:when>
+                    </c:choose>
+                    <c:if test="${pageable.pageNumber >= totalPages - 1}" var="disableNext"/>
+                    <li class="page-item <c:if test="${disableNext}">disabled</c:if>">
 
-                    <a class="page-link"
-                       href="<c:url value="/cart/history?page=${disableNext ? totalPages - 1 : pageable.pageNumber + 1}"/>">Next
-                    </a>
-                </li>
-            </ul>
-        </div>
+                        <a class="page-link"
+                           href="<c:url value="/cart/history?page=${disableNext ? totalPages - 1 : pageable.pageNumber + 1}"/>">Next
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </c:if>
     </div>
 
 
