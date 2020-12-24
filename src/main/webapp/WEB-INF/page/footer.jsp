@@ -31,7 +31,7 @@
 		<p class="footer-links">
 			<a href="<c:url value="/home"/>">Home</a> · <a
 				href="<c:url value="/aboutus"/>">About Us</a> · <a href="<c:url value="/getAllProducts" />">Product
-				List</a> · <a href="<c:url value="/contactus"/>">Contact Us</a>
+				List</a>
 		</p>
 
 		<p>Created by STYLH teams &copy; 2020</p>
