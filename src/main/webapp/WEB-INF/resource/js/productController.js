@@ -28,7 +28,7 @@ var app = angular.module("myapp", []).controller(
 
         $scope.getCart = function (cartId) {
             $scope.cartId = cartId;
-            $scope.refreshCart(cartId);
+            $scope.refreshCart();
         }
         $scope.removeFromCart = function (cartItemId) {
             $http.put(BASE_PATH + "/cart/removeCartItem/"
